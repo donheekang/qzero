@@ -5,13 +5,15 @@ import { useState } from "react";
 type AITab = "guide" | "analysis" | "script";
 
 interface AIAssistantProps {
-  centerId: string;
-  centerName: string;
+  centerId?: string;
+  centerName?: string;
+  initialQuery?: string;
+  compact?: boolean;
 }
 
-export default function AIAssistant({ centerId, centerName }: AIAssistantProps) {
+export default function AIAssistant({ centerId, centerName, initialQuery = "", compact = false }: AIAssistantProps) {
   const [activeTab, setActiveTab] = useState<AITab>("guide");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(initialQuery);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -23,9 +25,9 @@ export default function AIAssistant({ centerId, centerName }: AIAssistantProps) 
   ];
 
   const placeholders: Record<AITab, string> = {
-    guide: `${centerName}에 어떤 문제로 전화하시나요?`,
+    guide: centerName ? `${centerName}에 어떤 문제로 전화하시나요?` : "어떤 고객센터 문제가 있으신가요?",
     analysis: "겪고 있는 문제를 자세히 설명해주세요",
-    script: "상담원에게 어떤 내용을 전달하고 싶으세요?",
+    script: centerName ? "상담원에게 어떤 내용을 전달하고 싶으세요?" : "어떤 상담을 하고 싶으세요?",
   };
 
   // 탭별로 API type 매핑
@@ -49,7 +51,7 @@ export default function AIAssistant({ centerId, centerName }: AIAssistantProps) 
         body: JSON.stringify({
           type: typeMap[activeTab],
           query: query.trim(),
-          centerId,
+          ...(centerId ? { centerId } : {}),
         }),
       });
 
@@ -89,15 +91,17 @@ export default function AIAssistant({ centerId, centerName }: AIAssistantProps) 
   };
 
   return (
-    <div className="mb-6">
-      <h2 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
-        <span className="w-5 h-5 bg-[#00E59B] rounded-full flex items-center justify-center">
-          <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-          </svg>
-        </span>
-        AI 어시스턴트
-      </h2>
+    <div className={compact ? "" : "mb-6"}>
+      {!compact && (
+        <h2 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+          <span className="w-5 h-5 bg-[#00E59B] rounded-full flex items-center justify-center">
+            <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </span>
+          AI 어시스턴트
+        </h2>
+      )}
 
       {/* Tabs */}
       <div className="flex gap-2 mb-3">

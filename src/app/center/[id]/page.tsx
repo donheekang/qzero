@@ -44,10 +44,9 @@ export default function CenterDetailPage() {
   const router = useRouter();
   const id = params.id as string;
   const [center, setCenter] = useState<CenterDetail | null>(null);
+  const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
-    // Fetch center data - in production this would be an API call
-    // For now, import the JSON directly
     import(`@/data/centers/${id}.json`)
       .then((mod) => setCenter(mod.default))
       .catch(() => setCenter(null));
@@ -61,37 +60,26 @@ export default function CenterDetailPage() {
     );
   }
 
-  const waitTimes = [
-    { label: "오전 (9-12시)", value: center.avg_wait.weekday_am, color: "bg-emerald-400" },
-    { label: "점심 (12-13시)", value: center.avg_wait.weekday_lunch, color: "bg-orange-400" },
-    { label: "오후 (13-18시)", value: center.avg_wait.weekday_pm, color: "bg-blue-400" },
-  ].filter(t => t.value !== null);
-
-  const maxWait = Math.max(...waitTimes.map(t => t.value || 0), 1);
-
   return (
     <div className="px-5 pt-6 pb-8">
       {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex items-center gap-3 mb-4">
         <button onClick={() => router.back()} className="p-2 -ml-2 text-gray-500 hover:text-gray-700">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
         <CompanyLogo centerId={id} size="md" />
-        <h1 className="text-xl font-bold text-gray-900">{center.name}</h1>
-        <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">{center.category}</span>
-      </div>
-
-      {/* Rating & Freshness */}
-      <div className="flex items-center gap-3 mb-6">
-        <div className="flex items-center gap-1">
-          <span className="text-sm font-medium text-gray-700">{center.satisfaction}/5점</span>
+        <div>
+          <h1 className="text-xl font-bold text-gray-900">{center.name}</h1>
+          <div className="flex items-center gap-2 mt-0.5">
+            <span className="text-xs text-gray-400">{center.category}</span>
+            <FreshnessBadge freshness={center.freshness} />
+          </div>
         </div>
-        <FreshnessBadge freshness={center.freshness} />
       </div>
 
-      {/* Contact info */}
+      {/* Contact - primary info */}
       <div className="bg-gray-50 rounded-2xl p-5 mb-4">
         {center.tel && (
           <a href={`tel:${center.tel.replace(/-/g, "")}`} className="flex items-center gap-3 mb-3">
@@ -108,15 +96,13 @@ export default function CenterDetailPage() {
         </div>
       </div>
 
-      {/* Shortcuts (ARS paths) */}
+      {/* ARS Shortcuts */}
       {Object.keys(center.shortcuts).length > 0 && (
-        <div className="mb-6">
-          <h2 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
-            상담원 최단 경로
-          </h2>
-          <div className="space-y-2">
+        <div className="mb-4">
+          <h2 className="text-sm font-semibold text-gray-900 mb-2">상담원 최단 경로</h2>
+          <div className="space-y-1.5">
             {Object.entries(center.shortcuts).map(([key, path]) => (
-              <div key={key} className="flex items-center justify-between px-4 py-3 bg-gray-50 rounded-xl">
+              <div key={key} className="flex items-center justify-between px-4 py-2.5 bg-gray-50 rounded-xl">
                 <span className="text-sm text-gray-700">{key}</span>
                 <span className="font-mono font-bold text-[#00E59B] text-sm">{path}</span>
               </div>
@@ -125,85 +111,77 @@ export default function CenterDetailPage() {
         </div>
       )}
 
-      {/* Wait times chart */}
-      {waitTimes.length > 0 && (
-        <div className="mb-6">
-          <h2 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
-            시간대별 대기 시간
-          </h2>
-          <div className="space-y-3">
-            {waitTimes.map((t) => (
-              <div key={t.label} className="flex items-center gap-3">
-                <span className="text-xs text-gray-500 w-28 shrink-0">{t.label}</span>
-                <div className="flex-1 bg-gray-100 rounded-full h-6 overflow-hidden">
-                  <div
-                    className={`h-full ${t.color} rounded-full flex items-center justify-end pr-2 transition-all`}
-                    style={{ width: `${Math.max(((t.value || 0) / maxWait) * 100, 10)}%` }}
-                  >
-                    <span className="text-xs text-white font-medium">{t.value}분</span>
+      {/* AI Assistant - primary position */}
+      <div className="mb-4">
+        <AIAssistant centerId={center.id} centerName={center.name} />
+      </div>
+
+      {/* More info toggle */}
+      {(center.tips.length > 0 || center.alternatives.length > 0) && (
+        <button
+          onClick={() => setShowMore(!showMore)}
+          className="w-full py-2.5 text-sm text-gray-400 hover:text-gray-600 flex items-center justify-center gap-1 mb-4"
+        >
+          {showMore ? "접기" : "더 보기 (꿀팁, 대안)"}
+          <svg className={`w-4 h-4 transition-transform ${showMore ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      )}
+
+      {/* Collapsible sections */}
+      {showMore && (
+        <>
+          {/* Tips */}
+          {center.tips.length > 0 && (
+            <div className="mb-4">
+              <h2 className="text-sm font-semibold text-gray-900 mb-2">사용자 꿀팁</h2>
+              <div className="space-y-1.5">
+                {center.tips.map((tip, i) => (
+                  <div key={i} className="flex items-start gap-2 px-4 py-2.5 bg-yellow-50 rounded-xl">
+                    <span className="text-yellow-500 mt-0.5 shrink-0">-</span>
+                    <p className="text-sm text-gray-700">{tip}</p>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      )}
+            </div>
+          )}
 
-      {/* Tips */}
-      {center.tips.length > 0 && (
-        <div className="mb-6">
-          <h2 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
-            사용자 꿀팁
-          </h2>
-          <div className="space-y-2">
-            {center.tips.map((tip, i) => (
-              <div key={i} className="flex items-start gap-2 px-4 py-3 bg-yellow-50 rounded-xl">
-                <span className="text-yellow-500 mt-0.5 shrink-0">•</span>
-                <p className="text-sm text-gray-700">{tip}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Alternatives */}
-      {center.alternatives.length > 0 && (
-        <div className="mb-6">
-          <h2 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
-            전화 없이 해결
-          </h2>
-          <div className="space-y-2">
-            {center.alternatives.map((alt, i) => (
-              <div key={i} className="flex items-start gap-3 px-4 py-3 bg-gray-50 rounded-xl">
-                <span className="text-xs font-semibold text-gray-400 uppercase mt-0.5 w-10 shrink-0">
-                  {alt.type === "app" ? "APP" : alt.type === "web" ? "WEB" : "CHAT"}
-                </span>
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-800">{alt.name}</p>
-                  {alt.path && <p className="text-xs text-gray-500 mt-0.5">{alt.path}</p>}
-                  <div className="flex flex-wrap gap-1 mt-1.5">
-                    {alt.solves.map((s) => (
-                      <span key={s} className="text-xs bg-white text-gray-500 px-2 py-0.5 rounded-full border border-gray-200">
-                        {s}
-                      </span>
-                    ))}
+          {/* Alternatives */}
+          {center.alternatives.length > 0 && (
+            <div className="mb-4">
+              <h2 className="text-sm font-semibold text-gray-900 mb-2">전화 없이 해결</h2>
+              <div className="space-y-1.5">
+                {center.alternatives.map((alt, i) => (
+                  <div key={i} className="flex items-start gap-3 px-4 py-3 bg-gray-50 rounded-xl">
+                    <span className="text-xs font-semibold text-gray-400 uppercase mt-0.5 w-10 shrink-0">
+                      {alt.type === "app" ? "APP" : alt.type === "web" ? "WEB" : "CHAT"}
+                    </span>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-gray-800">{alt.name}</p>
+                      {alt.path && <p className="text-xs text-gray-500 mt-0.5">{alt.path}</p>}
+                      <div className="flex flex-wrap gap-1 mt-1">
+                        {alt.solves.map((s) => (
+                          <span key={s} className="text-xs bg-white text-gray-500 px-2 py-0.5 rounded-full border border-gray-200">
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    {alt.url && (
+                      <a href={alt.url} target="_blank" rel="noopener noreferrer" className="shrink-0 text-gray-400 hover:text-[#00E59B]">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    )}
                   </div>
-                </div>
-                {alt.url && (
-                  <a href={alt.url} target="_blank" rel="noopener noreferrer" className="shrink-0 text-gray-400 hover:text-[#00E59B]">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </a>
-                )}
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
+          )}
+        </>
       )}
-
-      {/* AI Assistant */}
-      <AIAssistant centerId={center.id} centerName={center.name} />
 
       {/* Crowd vote */}
       <CrowdVote centerId={center.id} />

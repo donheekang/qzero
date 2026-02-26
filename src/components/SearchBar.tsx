@@ -7,9 +7,10 @@ interface SearchBarProps {
   autoFocus?: boolean;
   initialValue?: string;
   size?: "lg" | "sm";
+  onSearch?: (query: string) => void;
 }
 
-export default function SearchBar({ placeholder = "어떤 고객센터 문제가 있으신가요?", autoFocus = false, initialValue = "", size = "lg" }: SearchBarProps) {
+export default function SearchBar({ placeholder = "어떤 고객센터 문제가 있으신가요?", autoFocus = false, initialValue = "", size = "lg", onSearch }: SearchBarProps) {
   const [query, setQuery] = useState(initialValue);
   const [suggestions, setSuggestions] = useState<{id: string; name: string}[]>([]);
   const router = useRouter();
@@ -37,14 +38,22 @@ export default function SearchBar({ placeholder = "어떤 고객센터 문제가
     e.preventDefault();
     if (query.trim()) {
       setSuggestions([]);
-      router.push(`/search?q=${encodeURIComponent(query.trim())}`);
+      if (onSearch) {
+        onSearch(query.trim());
+      } else {
+        router.push(`/search?q=${encodeURIComponent(query.trim())}`);
+      }
     }
   };
 
   const handleSuggestionClick = (name: string) => {
     setQuery(name);
     setSuggestions([]);
-    router.push(`/search?q=${encodeURIComponent(name)}`);
+    if (onSearch) {
+      onSearch(name);
+    } else {
+      router.push(`/search?q=${encodeURIComponent(name)}`);
+    }
   };
 
   const isLarge = size === "lg";
