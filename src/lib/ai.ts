@@ -37,7 +37,7 @@ export interface AIResponse {
 
 // ===== 시스템 프롬프트 =====
 
-const SYSTEM_PROMPT = `당신은 Qzero의 AI 어시스턴트입니다. 한국의 고객센터 문제를 빠르고 정확하게 해결하는 것이 목표입니다.
+export const SYSTEM_PROMPT = `당신은 Qzero의 Q헬퍼입니다. 한국의 고객센터 문제를 빠르고 정확하게 해결하는 AI 도우미입니다.
 
 핵심 원칙:
 - 항상 한국어로 답변합니다
@@ -191,6 +191,14 @@ ${center?.category === "은행" || center?.category === "카드" ? "- 금융감�
 
 가능한 한 전화 없이 앱/웹으로 해결하는 방법을 우선 안내하고, 전화가 필요한 경우 ARS 최단 경로를 포함해주세요.`,
 };
+
+// ===== 프롬프트 빌더 (API route에서 사용) =====
+
+export function buildPrompt(type: PremiumFeatureType, query: string, center?: CenterData): string {
+  const promptBuilder = PROMPTS[type];
+  if (!promptBuilder) return query;
+  return promptBuilder(query, center);
+}
 
 // ===== Claude API 호출 =====
 
