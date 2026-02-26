@@ -1,11 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
   callClaudeAPI,
-  getPremiumPreview,
   PremiumFeatureType,
 } from "@/lib/ai";
 import { getCenterById } from "@/lib/centers";
-import { checkPremiumStatus, canUsePremiumFeature, incrementAIUsage } from "@/lib/premium";
 
 /**
  * POST /api/ai
@@ -52,29 +50,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 프리미엄 상태 확인 (intent_analysis는 시스템 내부 호출이므로 체크 skip)
-    let premiumStatus = null;
-    if (type !== "intent_analysis") {
-      premiumStatus = await checkPremiumStatus(email);
-      const { allowed, reason } = canUsePremiumFeature(premiumStatus);
-
-      if (!allowed) {
-        // 무료 사용자: 미리보기만 반환
-        const center = centerId ? getCenterById(centerId) : undefined;
-        const preview = getPremiumPreview(type, center);
-
-        return NextResponse.json({
-          success: false,
-          locked: true,
-          preview,
-          message: reason,
-          plan: {
-            price: "월 2,900원",
-            cta: "프리미엄 시작하기",
-          },
-        });
-      }
-    }
+    // MVP: 프리미엄 제한 없이 모든 사용자에게 AI 기능 제공
+    // TODO: 추후 구독 모델 도입 시 프리미엄 체크 복원
 
     // 고객센터 데이터 조회
     const center = centerId ? getCenterById(centerId) : undefined;
@@ -93,16 +70,6 @@ export async function POST(request: NextRequest) {
           error: result.content,
         },
         { status: 500 }
-      );
-    }
-
-    // 프리미엄 사용자: AI 사용 기록 저장
-    if (premiumStatus?.subscriptionId && type !== "intent_analysis") {
-      await incrementAIUsage(
-        premiumStatus.subscriptionId,
-        type,
-        query,
-        result.tokensUsed || 0
       );
     }
 

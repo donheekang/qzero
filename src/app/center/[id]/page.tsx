@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import FreshnessBadge from "@/components/FreshnessBadge";
 import CrowdVote from "@/components/CrowdVote";
 import CompanyLogo from "@/components/CompanyLogo";
+import AIAssistant from "@/components/AIAssistant";
 
 interface CenterDetail {
   id: string;
@@ -200,6 +201,9 @@ export default function CenterDetailPage() {
           </div>
         </div>
       )}
+
+      {/* AI Assistant */}
+      <AIAssistant centerId={center.id} centerName={center.name} />
 
       {/* Crowd vote */}
       <CrowdVote centerId={center.id} />
