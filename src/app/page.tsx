@@ -180,15 +180,15 @@ export default function Home() {
           {/* Popular centers */}
           <div>
             <p className="text-xs text-gray-400 mb-3">자주 찾는 고객센터</p>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="flex flex-wrap gap-2">
               {POPULAR_CENTERS.map((c) => (
                 <button
                   key={c.id}
                   onClick={() => router.push(`/center/${c.id}`)}
-                  className="flex flex-col items-center gap-1.5 py-3 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2.5 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
                 >
-                  <CompanyLogo centerId={c.id} size="sm" />
-                  <span className="text-xs text-gray-600">{c.name}</span>
+                  <CompanyLogo centerId={c.id} size="xs" />
+                  <span className="text-sm text-gray-700">{c.name}</span>
                 </button>
               ))}
             </div>
