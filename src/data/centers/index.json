@@ -1,0 +1,274 @@
+[
+  {
+    "id": "baemin",
+    "name": "배달의민족",
+    "category": "기타",
+    "tel": "1600-0987",
+    "keywords": [
+      "배달의민족",
+      "배민",
+      "baemin",
+      "배달",
+      "우아한형제들"
+    ]
+  },
+  {
+    "id": "coupang",
+    "name": "쿠팡",
+    "category": "기타",
+    "tel": "1577-7011",
+    "keywords": [
+      "쿠팡",
+      "coupang",
+      "로켓배송",
+      "로켓와우",
+      "쿠팡와우"
+    ]
+  },
+  {
+    "id": "gov24",
+    "name": "정부24",
+    "category": "공공",
+    "tel": "1588-2188",
+    "keywords": [
+      "정부24",
+      "gov24",
+      "정부",
+      "주민센터",
+      "민원",
+      "주민등록등본",
+      "증명서",
+      "110"
+    ]
+  },
+  {
+    "id": "hanabank",
+    "name": "하나은행",
+    "category": "은행",
+    "tel": "1588-1111",
+    "keywords": [
+      "하나은행",
+      "hana",
+      "하나",
+      "하나원큐",
+      "kebhana"
+    ]
+  },
+  {
+    "id": "hyundaicard",
+    "name": "현대카드",
+    "category": "카드",
+    "tel": "1577-6000",
+    "keywords": [
+      "현대카드",
+      "hyundai",
+      "현대",
+      "hyundaicard",
+      "m포인트"
+    ]
+  },
+  {
+    "id": "kakao",
+    "name": "카카오",
+    "category": "기타",
+    "tel": "1577-3754",
+    "keywords": [
+      "카카오",
+      "kakao",
+      "카카오톡",
+      "카톡",
+      "카카오페이",
+      "카카오택시",
+      "카카오뱅크"
+    ]
+  },
+  {
+    "id": "kbbank",
+    "name": "KB국민은행",
+    "category": "은행",
+    "tel": "1588-9999",
+    "keywords": [
+      "국민은행",
+      "kb국민은행",
+      "kb은행",
+      "kbbank",
+      "kb",
+      "국민"
+    ]
+  },
+  {
+    "id": "kbcard",
+    "name": "KB국민카드",
+    "category": "카드",
+    "tel": "1588-1688",
+    "keywords": [
+      "kb카드",
+      "국민카드",
+      "kb국민카드",
+      "kbcard",
+      "kb pay"
+    ]
+  },
+  {
+    "id": "kt",
+    "name": "KT",
+    "category": "통신",
+    "tel": "080-000-1618",
+    "keywords": [
+      "kt",
+      "케이티",
+      "케이티텔레콤",
+      "olleh",
+      "올레"
+    ]
+  },
+  {
+    "id": "lguplus",
+    "name": "LG U+",
+    "category": "통신",
+    "tel": "1544-0010",
+    "keywords": [
+      "lgu+",
+      "lg유플러스",
+      "엘지유플러스",
+      "유플러스",
+      "lguplus",
+      "lg u+",
+      "엘지"
+    ]
+  },
+  {
+    "id": "lottecard",
+    "name": "롯데카드",
+    "category": "카드",
+    "tel": "1588-8100",
+    "keywords": [
+      "롯데카드",
+      "lotte",
+      "롯데",
+      "lottecard",
+      "l.point",
+      "엘포인트"
+    ]
+  },
+  {
+    "id": "naver",
+    "name": "네이버",
+    "category": "기타",
+    "tel": null,
+    "keywords": [
+      "네이버",
+      "naver",
+      "네이버페이",
+      "네이버쇼핑",
+      "네이버블로그"
+    ]
+  },
+  {
+    "id": "nhis",
+    "name": "국민건강보험공단",
+    "category": "공공",
+    "tel": "1577-1000",
+    "keywords": [
+      "건강보험",
+      "국민건강보험",
+      "nhis",
+      "건보",
+      "건강보험공단",
+      "의료보험"
+    ]
+  },
+  {
+    "id": "nonghyup",
+    "name": "NH농협은행",
+    "category": "은행",
+    "tel": "1661-3000",
+    "keywords": [
+      "농협",
+      "nh농협",
+      "농협은행",
+      "nonghyup",
+      "nh",
+      "올원뱅크"
+    ]
+  },
+  {
+    "id": "nps",
+    "name": "국민연금공단",
+    "category": "공공",
+    "tel": "1355",
+    "keywords": [
+      "국민연금",
+      "연금",
+      "nps",
+      "국민연금공단",
+      "연금공단"
+    ]
+  },
+  {
+    "id": "samsungcard",
+    "name": "삼성카드",
+    "category": "카드",
+    "tel": "1588-8700",
+    "keywords": [
+      "삼성카드",
+      "samsung",
+      "삼성",
+      "samsungcard"
+    ]
+  },
+  {
+    "id": "shinhanbank",
+    "name": "신한은행",
+    "category": "은행",
+    "tel": "1577-8000",
+    "keywords": [
+      "신한은행",
+      "shinhan",
+      "신한",
+      "쏠뱅크",
+      "sol"
+    ]
+  },
+  {
+    "id": "shinhancard",
+    "name": "신한카드",
+    "category": "카드",
+    "tel": "1544-7000",
+    "keywords": [
+      "신한카드",
+      "shinhan card",
+      "신한",
+      "shinhancard",
+      "sol페이"
+    ]
+  },
+  {
+    "id": "skt",
+    "name": "SKT (SK텔레콤)",
+    "category": "통신",
+    "tel": "080-011-6000",
+    "keywords": [
+      "skt",
+      "sk텔레콤",
+      "sk telecom",
+      "에스케이티",
+      "에스케이텔레콤",
+      "sk",
+      "통신사"
+    ]
+  },
+  {
+    "id": "wooribank",
+    "name": "우리은행",
+    "category": "은행",
+    "tel": "1588-5000",
+    "keywords": [
+      "우리은행",
+      "woori",
+      "우리",
+      "원뱅킹",
+      "won뱅킹"
+    ]
+  }
+]

@@ -1,0 +1,84 @@
+{
+  "id": "hanabank",
+  "name": "하나은행",
+  "category": "은행",
+  "tel": "1588-1111",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00 (ARS 24시간)",
+  "ars_tree": {
+    "0": "상담원 직접 연결",
+    "1": {
+      "label": "계좌/조회/이체",
+      "sub": {
+        "1": "잔액조회",
+        "2": "이체"
+      }
+    },
+    "2": {
+      "label": "대출",
+      "sub": {
+        "1": "대출상담"
+      }
+    },
+    "9": {
+      "label": "분실/사고신고",
+      "sub": {}
+    }
+  },
+  "shortcuts": {
+    "상담원연결": "0",
+    "분실신고": "9",
+    "대출상담": "2 → 1"
+  },
+  "alternatives": [
+    {
+      "type": "app",
+      "name": "하나원큐",
+      "path": "홈 > 조회 > 계좌조회",
+      "solves": [
+        "잔액조회",
+        "이체",
+        "예금가입",
+        "대출조회"
+      ]
+    },
+    {
+      "type": "web",
+      "name": "하나은행 인터넷뱅킹",
+      "url": "https://www.kebhana.com",
+      "solves": [
+        "잔액조회",
+        "이체",
+        "예금가입"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 9,
+    "weekday_pm": 17,
+    "weekday_lunch": 28,
+    "weekend": null
+  },
+  "tips": [
+    "1599-1111도 동일하게 연결됨",
+    "분실신고 24시간 가능",
+    "하나원큐 앱이 편리함"
+  ],
+  "satisfaction": 3.3,
+  "last_updated": "2026-02-27",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-27",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "하나은행",
+    "hana",
+    "하나",
+    "하나원큐",
+    "kebhana"
+  ]
+}

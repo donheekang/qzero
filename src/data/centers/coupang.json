@@ -1,0 +1,103 @@
+{
+  "id": "coupang",
+  "name": "쿠팡",
+  "category": "기타",
+  "tel": "1577-7011",
+  "tel_short": null,
+  "hours": "연중무휴 24시간",
+  "ars_tree": {
+    "0": "상담원 직접 연결",
+    "1": {
+      "label": "주문/배송",
+      "sub": {
+        "1": "배송조회",
+        "2": "주문취소",
+        "3": "교환/반품"
+      }
+    },
+    "2": {
+      "label": "로켓와우/멤버십",
+      "sub": {
+        "1": "가입/해지",
+        "2": "혜택안내"
+      }
+    },
+    "3": {
+      "label": "결제/환불",
+      "sub": {
+        "1": "결제문의",
+        "2": "환불문의"
+      }
+    }
+  },
+  "shortcuts": {
+    "상담원연결": "0",
+    "반품/교환": "1 → 3",
+    "주문취소": "1 → 2",
+    "와우해지": "2 → 1"
+  },
+  "alternatives": [
+    {
+      "type": "app",
+      "name": "쿠팡 앱",
+      "path": "마이쿠팡 > 주문목록 > 교환/반품",
+      "solves": [
+        "주문취소",
+        "반품신청",
+        "교환신청",
+        "배송조회",
+        "환불확인"
+      ]
+    },
+    {
+      "type": "chat",
+      "name": "쿠팡 실시간 채팅",
+      "url": "https://mc.coupang.com",
+      "solves": [
+        "주문문의",
+        "배송문의",
+        "환불문의",
+        "일반문의"
+      ]
+    },
+    {
+      "type": "web",
+      "name": "쿠팡 고객센터",
+      "url": "https://mc.coupang.com/ssr/desktop/contact/faq",
+      "solves": [
+        "FAQ",
+        "주문문의",
+        "배송문의"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 5,
+    "weekday_pm": 10,
+    "weekday_lunch": 12,
+    "weekend": 8
+  },
+  "tips": [
+    "24시간 연중무휴 운영으로 언제든 상담 가능",
+    "앱에서 반품/교환 신청이 가장 빠름 (수거기사 자동배정)",
+    "실시간 채팅이 전화보다 대기 짧음",
+    "로켓배송 상품은 30일 이내 무료 반품"
+  ],
+  "satisfaction": 3.6,
+  "last_updated": "2026-02-27",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-27",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "쿠팡",
+    "coupang",
+    "로켓배송",
+    "로켓와우",
+    "쿠팡와우"
+  ]
+}

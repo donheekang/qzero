@@ -1,0 +1,94 @@
+{
+  "id": "kakao",
+  "name": "카카오",
+  "category": "기타",
+  "tel": "1577-3754",
+  "tel_short": null,
+  "hours": "평일 10:00~18:30 (챗봇 24시간)",
+  "ars_tree": {
+    "1": {
+      "label": "카카오톡/계정/이모티콘",
+      "sub": {
+        "0": "상담원 연결",
+        "1": "상담원 연결 확인"
+      }
+    },
+    "2": {
+      "label": "카카오페이",
+      "sub": {}
+    },
+    "3": {
+      "label": "카카오모빌리티(택시)",
+      "sub": {}
+    }
+  },
+  "shortcuts": {
+    "상담원연결": "1 → 0 → 1",
+    "카카오페이문의": "2",
+    "카카오택시문의": "3"
+  },
+  "alternatives": [
+    {
+      "type": "chat",
+      "name": "카카오 고객센터 채널",
+      "url": "https://cs.kakao.com",
+      "solves": [
+        "카카오톡문의",
+        "계정문의",
+        "이모티콘문의",
+        "일반문의"
+      ]
+    },
+    {
+      "type": "web",
+      "name": "카카오 고객센터",
+      "url": "https://cs.kakao.com",
+      "solves": [
+        "계정문의",
+        "서비스문의",
+        "신고"
+      ]
+    },
+    {
+      "type": "chat",
+      "name": "카카오페이 고객센터",
+      "url": "https://support.kakaopay.com",
+      "solves": [
+        "결제문의",
+        "송금문의",
+        "계좌문의"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 12,
+    "weekday_pm": 20,
+    "weekday_lunch": 28,
+    "weekend": null
+  },
+  "tips": [
+    "1577-3754 → 1번 → 0번 → 1번으로 상담원 연결",
+    "카카오톡에서 '카카오 고객센터' 채널 검색하면 365일 24시간 챗봇 이용 가능",
+    "상담톡은 평일 10:00~18:30 운영",
+    "카카오페이는 별도 고객센터 이용 권장"
+  ],
+  "satisfaction": 2.9,
+  "last_updated": "2026-02-27",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-27",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "카카오",
+    "kakao",
+    "카카오톡",
+    "카톡",
+    "카카오페이",
+    "카카오택시",
+    "카카오뱅크"
+  ]
+}

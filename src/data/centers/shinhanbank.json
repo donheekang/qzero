@@ -1,0 +1,99 @@
+{
+  "id": "shinhanbank",
+  "name": "신한은행",
+  "category": "은행",
+  "tel": "1577-8000",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00 (ARS 24시간)",
+  "ars_tree": {
+    "0": "상담원 직접 연결",
+    "1": {
+      "label": "계좌/조회",
+      "sub": {
+        "1": "잔액조회",
+        "2": "이체"
+      }
+    },
+    "2": {
+      "label": "대출",
+      "sub": {
+        "1": "대출상담",
+        "2": "대출상환"
+      }
+    },
+    "3": {
+      "label": "예금/적금",
+      "sub": {}
+    },
+    "9": {
+      "label": "분실/사고신고",
+      "sub": {}
+    }
+  },
+  "shortcuts": {
+    "상담원연결": "0",
+    "분실신고": "9",
+    "대출상담": "2 → 1"
+  },
+  "alternatives": [
+    {
+      "type": "app",
+      "name": "신한 SOL뱅크",
+      "path": "홈 > 조회 > 잔액/거래내역",
+      "solves": [
+        "잔액조회",
+        "이체",
+        "예금가입",
+        "대출조회",
+        "카드관리"
+      ]
+    },
+    {
+      "type": "web",
+      "name": "신한은행 인터넷뱅킹",
+      "url": "https://www.shinhan.com",
+      "solves": [
+        "잔액조회",
+        "이체",
+        "예금가입"
+      ]
+    },
+    {
+      "type": "chat",
+      "name": "신한은행 챗봇 (오로라)",
+      "url": null,
+      "solves": [
+        "일반문의",
+        "상품안내"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 8,
+    "weekday_pm": 18,
+    "weekday_lunch": 25,
+    "weekend": null
+  },
+  "tips": [
+    "1599-8000, 1544-8000도 동일하게 연결됨",
+    "분실신고는 24시간 가능",
+    "SOL뱅크 앱에서 거의 모든 업무 가능"
+  ],
+  "satisfaction": 3.4,
+  "last_updated": "2026-02-27",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-27",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "신한은행",
+    "shinhan",
+    "신한",
+    "쏠뱅크",
+    "sol"
+  ]
+}

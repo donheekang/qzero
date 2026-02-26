@@ -1,0 +1,72 @@
+{
+  "id": "naver",
+  "name": "네이버",
+  "category": "기타",
+  "tel": null,
+  "tel_short": null,
+  "hours": "온라인 문의 전용 (톡톡: 평일 09:00~18:00)",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "web",
+      "name": "네이버 고객센터",
+      "url": "https://help.naver.com",
+      "solves": [
+        "계정문의",
+        "서비스문의",
+        "신고",
+        "오류신고"
+      ]
+    },
+    {
+      "type": "chat",
+      "name": "네이버 톡톡 채팅상담",
+      "url": "https://help.naver.com",
+      "solves": [
+        "계정복구",
+        "보안문의",
+        "서비스이용문의"
+      ]
+    },
+    {
+      "type": "web",
+      "name": "네이버 1:1 문의",
+      "url": "https://help.naver.com",
+      "solves": [
+        "상세문의",
+        "이의신청"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": null,
+    "weekday_pm": null,
+    "weekday_lunch": null,
+    "weekend": null
+  },
+  "tips": [
+    "2026년 기준 전화 상담은 전면 중단됨",
+    "네이버 톡톡으로 실시간 채팅 상담 가능 (평일)",
+    "1:1 문의 접수 후 이메일로 답변 받는 방식",
+    "계정 보호조치 해제는 본인인증 후 가능",
+    "네이버페이 문의는 네이버페이 고객센터 별도 이용"
+  ],
+  "satisfaction": 2.5,
+  "last_updated": "2026-02-27",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-27",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "네이버",
+    "naver",
+    "네이버페이",
+    "네이버쇼핑",
+    "네이버블로그"
+  ]
+}

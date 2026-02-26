@@ -1,0 +1,98 @@
+{
+  "id": "nps",
+  "name": "국민연금공단",
+  "category": "공공",
+  "tel": "1355",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00",
+  "ars_tree": {
+    "0": "상담원 직접 연결",
+    "1": {
+      "label": "연금보험료",
+      "sub": {
+        "1": "보험료조회",
+        "2": "납부확인"
+      }
+    },
+    "2": {
+      "label": "연금급여/수령",
+      "sub": {
+        "1": "수급자격확인",
+        "2": "연금수령액조회"
+      }
+    },
+    "3": {
+      "label": "자격/가입",
+      "sub": {
+        "1": "가입확인",
+        "2": "납부이력"
+      }
+    }
+  },
+  "shortcuts": {
+    "상담원연결": "0",
+    "보험료조회": "1 → 1",
+    "수급자격확인": "2 → 1"
+  },
+  "alternatives": [
+    {
+      "type": "app",
+      "name": "내 곁에 국민연금",
+      "path": "홈 > 조회 > 가입내역조회",
+      "solves": [
+        "가입내역조회",
+        "예상연금조회",
+        "보험료조회",
+        "납부확인"
+      ]
+    },
+    {
+      "type": "web",
+      "name": "국민연금공단 홈페이지",
+      "url": "https://www.nps.or.kr",
+      "solves": [
+        "가입내역조회",
+        "예상연금조회",
+        "각종신청"
+      ]
+    },
+    {
+      "type": "chat",
+      "name": "국민연금 챗봇",
+      "url": null,
+      "solves": [
+        "일반문의",
+        "연금문의"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 12,
+    "weekday_pm": 20,
+    "weekday_lunch": 30,
+    "weekend": null
+  },
+  "tips": [
+    "1355는 유료 전화 (일반 통화료 부과)",
+    "문자채팅상담도 가능 (평일)",
+    "24시간 챗봇 상담 운영 중",
+    "앱에서 예상 연금액 시뮬레이션 가능"
+  ],
+  "satisfaction": 3.0,
+  "last_updated": "2026-02-27",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-27",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "국민연금",
+    "연금",
+    "nps",
+    "국민연금공단",
+    "연금공단"
+  ]
+}

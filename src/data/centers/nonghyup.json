@@ -1,0 +1,85 @@
+{
+  "id": "nonghyup",
+  "name": "NH농협은행",
+  "category": "은행",
+  "tel": "1661-3000",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00 (ARS 24시간)",
+  "ars_tree": {
+    "0": "상담원 직접 연결",
+    "1": {
+      "label": "계좌/조회/이체",
+      "sub": {
+        "1": "잔액조회",
+        "2": "이체"
+      }
+    },
+    "2": {
+      "label": "대출",
+      "sub": {
+        "1": "대출상담"
+      }
+    },
+    "9": {
+      "label": "분실/사고신고",
+      "sub": {}
+    }
+  },
+  "shortcuts": {
+    "상담원연결": "0",
+    "분실신고": "9",
+    "대출상담": "2 → 1"
+  },
+  "alternatives": [
+    {
+      "type": "app",
+      "name": "NH올원뱅크",
+      "path": "홈 > 조회 > 계좌조회",
+      "solves": [
+        "잔액조회",
+        "이체",
+        "예금가입",
+        "대출조회"
+      ]
+    },
+    {
+      "type": "web",
+      "name": "NH농협 인터넷뱅킹",
+      "url": "https://banking.nonghyup.com",
+      "solves": [
+        "잔액조회",
+        "이체"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 12,
+    "weekday_pm": 22,
+    "weekday_lunch": 30,
+    "weekend": null
+  },
+  "tips": [
+    "1522-3000도 동일하게 연결됨",
+    "분실신고 24시간 가능",
+    "지역농협과 NH농협은행 고객센터가 다름",
+    "NH올원뱅크 앱에서 대부분 업무 가능"
+  ],
+  "satisfaction": 3.0,
+  "last_updated": "2026-02-27",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-27",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "농협",
+    "nh농협",
+    "농협은행",
+    "nonghyup",
+    "nh",
+    "올원뱅크"
+  ]
+}

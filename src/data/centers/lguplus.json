@@ -1,0 +1,77 @@
+{
+  "id": "lguplus",
+  "name": "LG U+",
+  "category": "통신",
+  "tel": "1544-0010",
+  "tel_short": "101 (LG U+ 휴대폰 무료)",
+  "hours": "평일 09:00~18:00",
+  "ars_tree": {
+    "0": "상담원 직접 연결",
+    "1": {
+      "label": "이동전화",
+      "sub": {
+        "1": "요금/납부",
+        "2": "가입/변경/해지",
+        "3": "분실/습득"
+      }
+    },
+    "2": {
+      "label": "인터넷/TV/전화",
+      "sub": {
+        "1": "장애/AS",
+        "2": "요금",
+        "3": "가입/해지"
+      }
+    }
+  },
+  "shortcuts": {
+    "해지": "1 → 2 → 0",
+    "요금문의": "1 → 1 → 0",
+    "인터넷장애": "2 → 1",
+    "분실신고": "1 → 3",
+    "상담원연결": "0"
+  },
+  "alternatives": [
+    {
+      "type": "app",
+      "name": "당신의 U+",
+      "path": "MY > 요금 > 요금조회",
+      "solves": ["요금조회", "요금납부", "요금제변경", "데이터충전"]
+    },
+    {
+      "type": "chat",
+      "name": "U+ 채팅상담",
+      "url": "https://www.lguplus.com/support",
+      "solves": ["일반문의", "요금문의"]
+    },
+    {
+      "type": "web",
+      "name": "LG U+ 고객센터",
+      "url": "https://www.lguplus.com/support",
+      "solves": ["요금조회", "요금제변경", "부가서비스"]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 7,
+    "weekday_pm": 14,
+    "weekday_lunch": 22,
+    "weekend": null
+  },
+  "tips": [
+    "101은 LG U+ 본인 폰에서만 무료",
+    "오전 9시~10시가 가장 한산한 시간대",
+    "인터넷/TV 장애 상담은 24시간 가능",
+    "앱에서 대부분 해결 가능 (요금제변경, 데이터충전 등)"
+  ],
+  "satisfaction": 3.3,
+  "last_updated": "2026-02-27",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-27",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": ["lgu+", "lg유플러스", "엘지유플러스", "유플러스", "lguplus", "lg u+", "엘지"]
+}
