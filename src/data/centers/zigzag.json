@@ -1,0 +1,40 @@
+{
+  "id": "zigzag",
+  "name": "지그재그",
+  "category": "쇼핑",
+  "tel": "1670-8050",
+  "tel_short": null,
+  "hours": "평일 10:00~18:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [],
+  "avg_wait": {
+    "weekday_am": 11,
+    "weekday_pm": 16,
+    "weekday_lunch": 23,
+    "weekend": null
+  },
+  "tips": [
+    "여성의류 특화 플랫폼으로 트렌드 상담 전문",
+    "사이즈 문의 시 타사 비교를 기준으로 상담받기",
+    "반품 관련 배송료는 소비자 부담"
+  ],
+  "satisfaction": 3.6,
+  "last_updated": "2026-02-27",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-27",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "지그재그",
+    "zigzag",
+    "패션",
+    "여성의류",
+    "트렌드",
+    "옷"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "daiso",
+  "name": "다이소",
+  "category": "쇼핑",
+  "tel": "1522-4400",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00 / 토 09:00~14:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [],
+  "avg_wait": {
+    "weekday_am": 8,
+    "weekday_pm": 13,
+    "weekday_lunch": 18,
+    "weekend": null
+  },
+  "tips": [
+    "대부분 소량 다품목 구매이므로 온라인/앱 이용 권장",
+    "매장 방문이 가격/품질 확인에 최고",
+    "토요일은 오후 2시 이후 휴무"
+  ],
+  "satisfaction": 3.6,
+  "last_updated": "2026-02-27",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-27",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "다이소",
+    "daiso",
+    "생활용품",
+    "1000원",
+    "생활잡화",
+    "할인마트"
+  ]
+}

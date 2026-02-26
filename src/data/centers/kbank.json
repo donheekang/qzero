@@ -1,0 +1,60 @@
+{
+  "id": "kbank",
+  "name": "케이뱅크",
+  "category": "은행",
+  "tel": "1522-1000",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00 (사고신고 24시간)",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "app",
+      "name": "케이뱅크 앱",
+      "path": "메뉴 > 고객센터",
+      "solves": [
+        "계좌개설",
+        "거래조회",
+        "대출신청",
+        "계좌개설문제"
+      ]
+    },
+    {
+      "type": "chat",
+      "name": "케이뱅크 톡상담",
+      "url": "https://www.kbank.com",
+      "solves": [
+        "계좌문의",
+        "상품문의",
+        "거래문제",
+        "일반문의"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 12,
+    "weekday_pm": 20,
+    "weekday_lunch": 28,
+    "weekend": null
+  },
+  "tips": [
+    "사고신고나 긴급 문제는 24시간 전화 가능",
+    "카카오톡 채널로도 상담 가능",
+    "모바일 전용 앱으로 계좌 개설 시 최소 시간 소요"
+  ],
+  "satisfaction": 3.7,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "케이뱅크",
+    "kbank",
+    "K뱅크"
+  ]
+}

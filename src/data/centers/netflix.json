@@ -1,0 +1,60 @@
+{
+  "id": "netflix",
+  "name": "넷플릭스",
+  "category": "엔터",
+  "tel": "00-308-321-0161",
+  "tel_short": null,
+  "hours": "매일 08:00~20:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "app",
+      "name": "넷플릭스 앱",
+      "path": "계정 > 도움말",
+      "solves": [
+        "계정문제",
+        "결제문의",
+        "기술지원",
+        "사용자문의"
+      ]
+    },
+    {
+      "type": "web",
+      "name": "넷플릭스 고객지원",
+      "url": "https://www.netflix.com/kr",
+      "solves": [
+        "계정문제",
+        "결제문제",
+        "스트리밍문제",
+        "구독관리"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 6,
+    "weekday_pm": 10,
+    "weekday_lunch": 14,
+    "weekend": 8
+  },
+  "tips": [
+    "앱의 '도움말' 섹션에서 자동응답으로 많은 문제 해결 가능",
+    "국제 번호라 통화료가 발생할 수 있으니 웹 지원 활용 권장",
+    "계정 공유 문제는 최근 정책 변경 확인"
+  ],
+  "satisfaction": 3.9,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "넷플릭스",
+    "netflix",
+    "OTT"
+  ]
+}

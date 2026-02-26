@@ -1,0 +1,60 @@
+{
+  "id": "dbins",
+  "name": "DB손해보험",
+  "category": "보험",
+  "tel": "1588-0100",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "web",
+      "name": "DB손해보험 고객센터",
+      "url": "https://www.db.com/kr",
+      "solves": [
+        "보험료조회",
+        "보험금청구",
+        "사고접수",
+        "계약관리"
+      ]
+    },
+    {
+      "type": "app",
+      "name": "DB손해보험 앱",
+      "path": "메뉴 > 고객지원",
+      "solves": [
+        "보험료확인",
+        "사고신고",
+        "보험금청구",
+        "증명서발급"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 13,
+    "weekday_pm": 19,
+    "weekday_lunch": 27,
+    "weekend": null
+  },
+  "tips": [
+    "사고 발생 시 앱으로 빠르게 신고 가능",
+    "증명서는 앱에서 즉시 발급 가능",
+    "보험금 청구 시 필요 서류 목록을 먼저 확인하기"
+  ],
+  "satisfaction": 3.7,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "DB손해보험",
+    "db보험",
+    "자동차보험"
+  ]
+}

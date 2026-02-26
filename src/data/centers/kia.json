@@ -1,0 +1,60 @@
+{
+  "id": "kia",
+  "name": "기아자동차",
+  "category": "자동차",
+  "tel": "080-200-2000",
+  "tel_short": null,
+  "hours": "평일 08:30~19:00 / 주말 09:00~17:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "web",
+      "name": "기아자동차 고객센터",
+      "url": "https://www.kia.com/kr",
+      "solves": [
+        "차량정보",
+        "AS신청",
+        "서비스예약",
+        "보증확인"
+      ]
+    },
+    {
+      "type": "app",
+      "name": "기아 커넥트",
+      "path": "메뉴 > 고객센터",
+      "solves": [
+        "차량원격제어",
+        "서비스예약",
+        "차량진단",
+        "이벤트조회"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 13,
+    "weekday_pm": 20,
+    "weekday_lunch": 28,
+    "weekend": 15
+  },
+  "tips": [
+    "기아 커넥트 앱으로 차량 상태 원격 확인 가능",
+    "주말 운영으로 토일요일도 상담 가능",
+    "정기점검 예약은 근처 딜러에서 미리 하기"
+  ],
+  "satisfaction": 3.9,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "기아",
+    "기아자동차",
+    "kia"
+  ]
+}

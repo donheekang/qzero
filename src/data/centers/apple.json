@@ -1,0 +1,61 @@
+{
+  "id": "apple",
+  "name": "애플코리아",
+  "category": "전자",
+  "tel": "1566-5670",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00 / 토 09:00~13:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "web",
+      "name": "Apple 공식 지원",
+      "url": "https://support.apple.com/ko_KR",
+      "solves": [
+        "기술지원",
+        "AS신청",
+        "제품정보",
+        "문제해결"
+      ]
+    },
+    {
+      "type": "chat",
+      "name": "Apple Support 채팅",
+      "url": "https://support.apple.com/ko_KR",
+      "solves": [
+        "제품문제",
+        "기술지원",
+        "AS신청",
+        "일반문의"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 13,
+    "weekday_pm": 21,
+    "weekday_lunch": 28,
+    "weekend": null
+  },
+  "tips": [
+    "Apple Support 채팅은 한국어 지원으로 빠른 도움 가능",
+    "AppleCare+ 가입 시 더 나은 서비스 제공",
+    "제품 수리는 공식 Apple Service Provider 방문 필수"
+  ],
+  "satisfaction": 4.1,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "애플",
+    "apple",
+    "아이폰",
+    "맥북"
+  ]
+}

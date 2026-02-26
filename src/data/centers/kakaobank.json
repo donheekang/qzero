@@ -1,0 +1,59 @@
+{
+  "id": "kakaobank",
+  "name": "카카오뱅크",
+  "category": "은행",
+  "tel": "1599-3333",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "app",
+      "name": "카카오뱅크 앱",
+      "path": "메뉴 > 고객센터",
+      "solves": [
+        "계좌개설",
+        "거래조회",
+        "대출문의",
+        "환금문제"
+      ]
+    },
+    {
+      "type": "chat",
+      "name": "카카오뱅크 톡상담",
+      "url": "https://www.kakaobank.com",
+      "solves": [
+        "계좌문의",
+        "거래문의",
+        "신청문의",
+        "일반문의"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 10,
+    "weekday_pm": 18,
+    "weekday_lunch": 25,
+    "weekend": null
+  },
+  "tips": [
+    "카카오톡에서 '카카오뱅크 고객센터' 채널로 상담 가능",
+    "앱 설치 후 계좌 개설까지 빠르게 처리됨",
+    "24시간 자동이체 가능하며 수수료 면제"
+  ],
+  "satisfaction": 3.9,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "카카오뱅크",
+    "kakaobank"
+  ]
+}

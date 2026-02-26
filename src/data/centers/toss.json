@@ -1,0 +1,60 @@
+{
+  "id": "toss",
+  "name": "토스",
+  "category": "금융",
+  "tel": "1661-7654",
+  "tel_short": null,
+  "hours": "24시간 365일",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "app",
+      "name": "토스 앱",
+      "path": "프로필 > 고객지원",
+      "solves": [
+        "계좌문의",
+        "송금문제",
+        "결제문의",
+        "보안문제"
+      ]
+    },
+    {
+      "type": "chat",
+      "name": "토스 고객센터 채팅",
+      "url": "https://toss.im",
+      "solves": [
+        "일반문의",
+        "거래내역",
+        "환불문의",
+        "계좌개설"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 5,
+    "weekday_pm": 8,
+    "weekday_lunch": 10,
+    "weekend": 6
+  },
+  "tips": [
+    "토스 앱에서 24시간 실시간 채팅상담 가능",
+    "거래내역 문의는 앱에서 바로 확인 가능",
+    "긴급 문제는 전화보다 앱 채팅이 빠름"
+  ],
+  "satisfaction": 4.0,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "토스",
+    "토스뱅크",
+    "toss"
+  ]
+}

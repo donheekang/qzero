@@ -1,0 +1,60 @@
+{
+  "id": "hyundaicar",
+  "name": "현대자동차",
+  "category": "자동차",
+  "tel": "080-600-6000",
+  "tel_short": null,
+  "hours": "평일 08:30~17:30",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "web",
+      "name": "현대자동차 고객센터",
+      "url": "https://www.hyundai.com/kr",
+      "solves": [
+        "차량정보",
+        "AS신청",
+        "보증기간확인",
+        "서비스예약"
+      ]
+    },
+    {
+      "type": "app",
+      "name": "현대 블루멤버스",
+      "path": "메뉴 > 고객센터",
+      "solves": [
+        "서비스예약",
+        "차량상태확인",
+        "보증확인",
+        "이벤트조회"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 14,
+    "weekday_pm": 22,
+    "weekday_lunch": 30,
+    "weekend": null
+  },
+  "tips": [
+    "블루멤버스 앱에 가입하면 빠른 서비스 예약 가능",
+    "정기점검은 딜러에서 미리 예약하면 대기 시간 단축",
+    "보증 기간은 구매처에서 확인한 서류와 함께 문의"
+  ],
+  "satisfaction": 3.8,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "현대자동차",
+    "현대차",
+    "hyundai"
+  ]
+}

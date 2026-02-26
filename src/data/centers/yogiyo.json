@@ -1,0 +1,60 @@
+{
+  "id": "yogiyo",
+  "name": "요기요",
+  "category": "배달",
+  "tel": "1661-5270",
+  "tel_short": null,
+  "hours": "24시간 연중무휴",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "app",
+      "name": "요기요 앱",
+      "path": "마이페이지 > 고객센터",
+      "solves": [
+        "주문조회",
+        "배달문의",
+        "환불신청",
+        "가게문의"
+      ]
+    },
+    {
+      "type": "chat",
+      "name": "요기요 앱 채팅상담",
+      "url": "https://www.yogiyo.co.kr",
+      "solves": [
+        "주문문의",
+        "배달지연",
+        "결제문제",
+        "환불문의"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 8,
+    "weekday_pm": 15,
+    "weekday_lunch": 20,
+    "weekend": 12
+  },
+  "tips": [
+    "요기요 앱의 고객센터에서 채팅 상담이 가장 빠름",
+    "주문 후 배달 중일 때는 기사님과 직접 연락 가능",
+    "환불은 앱에서 자동으로 신청 가능"
+  ],
+  "satisfaction": 3.8,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "요기요",
+    "yogiyo",
+    "배달"
+  ]
+}

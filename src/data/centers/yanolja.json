@@ -1,0 +1,61 @@
+{
+  "id": "yanolja",
+  "name": "야놀자",
+  "category": "여행",
+  "tel": "1644-1346",
+  "tel_short": null,
+  "hours": "매일 09:00~18:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "app",
+      "name": "야놀자 앱",
+      "path": "마이페이지 > 고객센터",
+      "solves": [
+        "예약조회",
+        "숙박문제",
+        "환불신청",
+        "가게문의"
+      ]
+    },
+    {
+      "type": "chat",
+      "name": "야놀자 앱 채팅상담",
+      "url": "https://www.yanolja.com",
+      "solves": [
+        "숙박문의",
+        "예약문제",
+        "환불문의",
+        "일반문의"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 7,
+    "weekday_pm": 12,
+    "weekday_lunch": 18,
+    "weekend": 10
+  },
+  "tips": [
+    "앱에서 24시간 채팅상담 가능 (실시간 아닐 수도 있음)",
+    "예약 취소는 각 숙박업체의 정책에 따르니 확인 필수",
+    "야놀자 캐시로 적립되는 포인트 활용하기"
+  ],
+  "satisfaction": 3.9,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "야놀자",
+    "yanolja",
+    "숙박",
+    "호텔"
+  ]
+}

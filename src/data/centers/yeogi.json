@@ -1,0 +1,61 @@
+{
+  "id": "yeogi",
+  "name": "여기어때",
+  "category": "여행",
+  "tel": "1670-6250",
+  "tel_short": null,
+  "hours": "매일 09:00~03:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "app",
+      "name": "여기어때 앱",
+      "path": "마이페이지 > 고객센터",
+      "solves": [
+        "예약조회",
+        "숙박문제",
+        "환불신청",
+        "가게문의"
+      ]
+    },
+    {
+      "type": "chat",
+      "name": "여기어때 앱 채팅상담",
+      "url": "https://www.yeogiottae.com",
+      "solves": [
+        "숙박문의",
+        "예약변경",
+        "환불문제",
+        "일반문의"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 6,
+    "weekday_pm": 11,
+    "weekday_lunch": 16,
+    "weekend": 9
+  },
+  "tips": [
+    "밤 늦게까지 운영하므로 야간 예약 후 신속한 상담 가능",
+    "앱의 채팅상담이 가장 빠른 응답",
+    "일일 특가 상품은 시간 제한이 있으니 확인 필수"
+  ],
+  "satisfaction": 4.0,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "여기어때",
+    "yeogi",
+    "숙박",
+    "호텔"
+  ]
+}

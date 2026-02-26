@@ -1,0 +1,60 @@
+{
+  "id": "lg",
+  "name": "LG전자",
+  "category": "전자",
+  "tel": "1544-7777",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "web",
+      "name": "LG전자 고객센터",
+      "url": "https://www.lg.co.kr",
+      "solves": [
+        "제품등록",
+        "AS신청",
+        "보증기간확인",
+        "제품설명서"
+      ]
+    },
+    {
+      "type": "app",
+      "name": "LG전자 고객센터 앱",
+      "path": "메뉴 > 고객센터",
+      "solves": [
+        "AS신청",
+        "제품등록",
+        "보증확인",
+        "설명서다운로드"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 12,
+    "weekday_pm": 20,
+    "weekday_lunch": 27,
+    "weekend": null
+  },
+  "tips": [
+    "AS 신청은 웹사이트 고객센터에서 바로 가능",
+    "제품 설명서는 모델번호로 웹에서 다운로드 가능",
+    "LG멤버스 가입 시 추가 혜택 제공"
+  ],
+  "satisfaction": 3.6,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "LG전자",
+    "lg",
+    "가전"
+  ]
+}

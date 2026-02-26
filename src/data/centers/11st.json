@@ -1,0 +1,52 @@
+{
+  "id": "11st",
+  "name": "11번가",
+  "category": "쇼핑",
+  "tel": "1599-0110",
+  "tel_short": null,
+  "hours": "매일 09:00~20:00",
+  "ars_tree": {},
+  "shortcuts": {
+    "상담원연결": "0"
+  },
+  "alternatives": [
+    {
+      "type": "chat",
+      "name": "11챗",
+      "url": null,
+      "solves": [
+        "주문",
+        "배송",
+        "반품"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 10,
+    "weekday_pm": 16,
+    "weekday_lunch": 22,
+    "weekend": 14
+  },
+  "tips": [
+    "11번가 앱에서 실시간 배송 조회 가능",
+    "채팅상담은 더 빠른 응답 시간 제공",
+    "일요일 저녁 시간이 상대적으로 한산함"
+  ],
+  "satisfaction": 3.6,
+  "last_updated": "2026-02-27",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-27",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "11번가",
+    "11st",
+    "십일번가",
+    "일레븐",
+    "쇼핑"
+  ]
+}

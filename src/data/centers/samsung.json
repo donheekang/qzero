@@ -1,0 +1,61 @@
+{
+  "id": "samsung",
+  "name": "삼성전자",
+  "category": "전자",
+  "tel": "1588-3366",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00 / 토 09:00~13:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "web",
+      "name": "삼성전자 고객센터",
+      "url": "https://www.samsung.com/sec",
+      "solves": [
+        "제품등록",
+        "AS신청",
+        "보증기간확인",
+        "제품정보"
+      ]
+    },
+    {
+      "type": "app",
+      "name": "삼성 멤버스",
+      "path": "마이페이지 > 고객센터",
+      "solves": [
+        "제품등록",
+        "AS현황",
+        "서비스예약",
+        "포인트관리"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 11,
+    "weekday_pm": 19,
+    "weekday_lunch": 26,
+    "weekend": null
+  },
+  "tips": [
+    "AS 신청 전 삼성 멤버스에 제품 등록하면 편함",
+    "보증 기간 확인은 제품 시리얼 번호로 조회 가능",
+    "토요일은 운영 시간이 짧으니 평일 이용 권장"
+  ],
+  "satisfaction": 3.7,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "삼성전자",
+    "samsung",
+    "갤럭시",
+    "가전"
+  ]
+}

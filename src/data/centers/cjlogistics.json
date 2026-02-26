@@ -1,0 +1,60 @@
+{
+  "id": "cjlogistics",
+  "name": "CJ대한통운",
+  "category": "택배",
+  "tel": "1588-1255",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00 / 토 09:00~13:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "web",
+      "name": "CJ대한통운 배송조회",
+      "url": "https://www.cj.co.kr",
+      "solves": [
+        "배송조회",
+        "배송지연문의",
+        "배송기사연락",
+        "분실신고"
+      ]
+    },
+    {
+      "type": "app",
+      "name": "CJ대한통운 앱",
+      "path": "배송조회 > 고객센터",
+      "solves": [
+        "실시간배송조회",
+        "도착예정시간",
+        "배송문의",
+        "상품반품"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 9,
+    "weekday_pm": 16,
+    "weekday_lunch": 22,
+    "weekend": null
+  },
+  "tips": [
+    "홈페이지와 앱에서 실시간 배송 추적 가능",
+    "배송 예정 시간 변경은 배송기사에게 직접 연락 권장",
+    "택배사원이 도착 불가할 때는 사전에 전화하기"
+  ],
+  "satisfaction": 3.7,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "CJ대한통운",
+    "cj택배",
+    "택배"
+  ]
+}

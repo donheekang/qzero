@@ -1,6 +1,6 @@
 import { CenterData, Freshness } from "./types";
 
-// 모든 고객센터 JSON을 정적으로 import
+// ===== 기존 고객센터 =====
 import skt from "@/data/centers/skt.json";
 import kt from "@/data/centers/kt.json";
 import lguplus from "@/data/centers/lguplus.json";
@@ -22,13 +22,84 @@ import baemin from "@/data/centers/baemin.json";
 import naver from "@/data/centers/naver.json";
 import kakao from "@/data/centers/kakao.json";
 
+// ===== 쇼핑/이커머스 =====
+import st11 from "@/data/centers/11st.json";
+import mustit from "@/data/centers/mustit.json";
+import musinsa from "@/data/centers/musinsa.json";
+import gmarket from "@/data/centers/gmarket.json";
+import ssg from "@/data/centers/ssg.json";
+import wemakeprice from "@/data/centers/wemakeprice.json";
+import zigzag from "@/data/centers/zigzag.json";
+import ably from "@/data/centers/ably.json";
+import daangn from "@/data/centers/daangn.json";
+import oliveyoung from "@/data/centers/oliveyoung.json";
+import daiso from "@/data/centers/daiso.json";
+import ohouse from "@/data/centers/ohouse.json";
+import tmon from "@/data/centers/tmon.json";
+
+// ===== 배달/음식 =====
+import yogiyo from "@/data/centers/yogiyo.json";
+
+// ===== 금융/핀테크 =====
+import toss from "@/data/centers/toss.json";
+import kakaobank from "@/data/centers/kakaobank.json";
+import kbank from "@/data/centers/kbank.json";
+
+// ===== 보험 =====
+import samsunglife from "@/data/centers/samsunglife.json";
+import hyundaiins from "@/data/centers/hyundaiins.json";
+import dbins from "@/data/centers/dbins.json";
+
+// ===== 항공/여행 =====
+import koreanair from "@/data/centers/koreanair.json";
+import asiana from "@/data/centers/asiana.json";
+import yanolja from "@/data/centers/yanolja.json";
+import yeogi from "@/data/centers/yeogi.json";
+
+// ===== 택배/물류 =====
+import cjlogistics from "@/data/centers/cjlogistics.json";
+import hanjin from "@/data/centers/hanjin.json";
+import logen from "@/data/centers/logen.json";
+
+// ===== 전자/가전/자동차 =====
+import samsung from "@/data/centers/samsung.json";
+import lg from "@/data/centers/lg.json";
+import apple from "@/data/centers/apple.json";
+import hyundaicar from "@/data/centers/hyundaicar.json";
+import kia from "@/data/centers/kia.json";
+
+// ===== IT/엔터 =====
+import netflix from "@/data/centers/netflix.json";
+import disneyplus from "@/data/centers/disneyplus.json";
+
+// ===== 공공기관 =====
+import nts from "@/data/centers/nts.json";
+import ei from "@/data/centers/ei.json";
+
 // 전체 고객센터 데이터
 const allCenters: CenterData[] = [
+  // 통신
   skt, kt, lguplus,
-  kbbank, shinhanbank, hanabank, wooribank, nonghyup,
+  // 은행
+  kbbank, shinhanbank, hanabank, wooribank, nonghyup, kakaobank, kbank, toss,
+  // 카드
   samsungcard, hyundaicard, kbcard, shinhancard, lottecard,
-  nhis, nps, gov24,
-  coupang, baemin, naver, kakao,
+  // 보험
+  samsunglife, hyundaiins, dbins,
+  // 공공
+  nhis, nps, gov24, nts, ei,
+  // 쇼핑/이커머스
+  coupang, st11, mustit, musinsa, gmarket, ssg, wemakeprice, zigzag, ably, daangn, oliveyoung, daiso, ohouse, tmon,
+  // 배달/음식
+  baemin, yogiyo,
+  // IT/플랫폼
+  naver, kakao, netflix, disneyplus,
+  // 항공/여행
+  koreanair, asiana, yanolja, yeogi,
+  // 택배/물류
+  cjlogistics, hanjin, logen,
+  // 전자/가전/자동차
+  samsung, lg, apple, hyundaicar, kia,
 ] as CenterData[];
 
 // ID로 고객센터 조회
@@ -83,8 +154,8 @@ export function getFreshnessStatus(
       ? freshness.reports_incorrect / freshness.verified_by
       : 0;
 
-  if (ratio > 0.3) return "disputed"; // 부정확 제보 30% 이상
-  if (daysSince > 30) return "stale"; // 30일 이상 미검증
+  if (ratio > 0.3) return "disputed";
+  if (daysSince > 30) return "stale";
   return "verified";
 }
 
@@ -94,28 +165,19 @@ export function getFreshnessStatus(
 export function getEstimatedWait(center: CenterData): number | null {
   const now = new Date();
   const hour = now.getHours();
-  const day = now.getDay(); // 0=일, 6=토
+  const day = now.getDay();
 
-  // 주말
   if (day === 0 || day === 6) {
     return center.avg_wait.weekend;
   }
-
-  // 점심시간 (12~13시)
   if (hour >= 12 && hour < 13) {
     return center.avg_wait.weekday_lunch;
   }
-
-  // 오전 (9~12시)
   if (hour >= 9 && hour < 12) {
     return center.avg_wait.weekday_am;
   }
-
-  // 오후 (13~18시)
   if (hour >= 13 && hour < 18) {
     return center.avg_wait.weekday_pm;
   }
-
-  // 영업시간 외
   return null;
 }

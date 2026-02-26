@@ -1,0 +1,60 @@
+{
+  "id": "hanjin",
+  "name": "한진택배",
+  "category": "택배",
+  "tel": "1588-0011",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "web",
+      "name": "한진택배 배송조회",
+      "url": "https://www.hanjin.co.kr",
+      "solves": [
+        "배송조회",
+        "배송기사연락",
+        "배송지연문의",
+        "분실신고"
+      ]
+    },
+    {
+      "type": "app",
+      "name": "한진택배 앱",
+      "path": "배송조회 > 고객센터",
+      "solves": [
+        "실시간배송조회",
+        "도착예정시간",
+        "배송문의",
+        "배송기사호출"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 10,
+    "weekday_pm": 17,
+    "weekday_lunch": 24,
+    "weekend": null
+  },
+  "tips": [
+    "배송 조회는 홈페이지에서 빠르게 확인 가능",
+    "배송 기사 연락처는 조회 페이지에서 확인 가능",
+    "택배 분실 시 신고 후 보상 청구 가능"
+  ],
+  "satisfaction": 3.6,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "한진택배",
+    "한진",
+    "택배"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "id": "asiana",
+  "name": "아시아나항공",
+  "category": "항공",
+  "tel": "1588-8000",
+  "tel_short": null,
+  "hours": "평일 07:00~22:00 / 주말 08:00~19:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "web",
+      "name": "아시아나항공 공식 홈페이지",
+      "url": "https://www.asiana.co.kr",
+      "solves": [
+        "항공권예약",
+        "예약조회",
+        "탑승권발급",
+        "환불신청"
+      ]
+    },
+    {
+      "type": "app",
+      "name": "아시아나항공 앱",
+      "path": "메뉴 > 고객센터",
+      "solves": [
+        "예약조회",
+        "탑승권발급",
+        "마일리지",
+        "수하물문의"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 18,
+    "weekday_pm": 26,
+    "weekday_lunch": 34,
+    "weekend": 20
+  },
+  "tips": [
+    "휴일에는 운영 시간이 짧으니 미리 확인하기",
+    "마일리지 특가 항공권은 앱에서만 예약 가능",
+    "체크인은 탑승 24시간 전부터 가능"
+  ],
+  "satisfaction": 3.8,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "아시아나",
+    "asiana",
+    "항공권"
+  ]
+}

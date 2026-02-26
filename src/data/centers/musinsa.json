@@ -1,0 +1,55 @@
+{
+  "id": "musinsa",
+  "name": "무신사",
+  "category": "쇼핑",
+  "tel": "1544-7199",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00",
+  "ars_tree": {},
+  "shortcuts": {
+    "무신사스토어": "1",
+    "키즈/플레이어": "2",
+    "부티크": "3"
+  },
+  "alternatives": [
+    {
+      "type": "chat",
+      "name": "카카오톡 상담",
+      "url": null,
+      "solves": [
+        "주문",
+        "교환",
+        "반품"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 11,
+    "weekday_pm": 17,
+    "weekday_lunch": 24,
+    "weekend": null
+  },
+  "tips": [
+    "패션 트렌드 정보도 함께 제공받을 수 있음",
+    "카카오톡 상담이 더 빠른 응답 제공",
+    "교환/반품은 배송료 선불로 진행"
+  ],
+  "satisfaction": 3.9,
+  "last_updated": "2026-02-27",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-27",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "무신사",
+    "musinsa",
+    "패션",
+    "의류",
+    "남성의류",
+    "여성의류"
+  ]
+}

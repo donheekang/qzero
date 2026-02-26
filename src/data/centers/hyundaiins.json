@@ -1,0 +1,60 @@
+{
+  "id": "hyundaiins",
+  "name": "현대해상",
+  "category": "보험",
+  "tel": "1899-6782",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "web",
+      "name": "현대해상 고객센터",
+      "url": "https://www.hyundaiins.com",
+      "solves": [
+        "보험료조회",
+        "청구서발급",
+        "자동차보험",
+        "보험금청구"
+      ]
+    },
+    {
+      "type": "app",
+      "name": "현대해상 다이렉트",
+      "path": "메뉴 > 고객센터",
+      "solves": [
+        "보험료확인",
+        "보험청구",
+        "사고접수",
+        "계약관리"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 14,
+    "weekday_pm": 21,
+    "weekday_lunch": 29,
+    "weekend": null
+  },
+  "tips": [
+    "자동차 사고는 앱에서 바로 접수 가능",
+    "보험료 비교 후 다이렉트로 가입하면 할인 혜택",
+    "청구서는 앱 또는 웹에서 바로 발급 가능"
+  ],
+  "satisfaction": 3.8,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "현대해상",
+    "현대해상다이렉트",
+    "자동차보험"
+  ]
+}

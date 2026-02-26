@@ -1,0 +1,40 @@
+{
+  "id": "ably",
+  "name": "에이블리",
+  "category": "쇼핑",
+  "tel": "1833-8021",
+  "tel_short": null,
+  "hours": "평일 09:30~18:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [],
+  "avg_wait": {
+    "weekday_am": 12,
+    "weekday_pm": 17,
+    "weekday_lunch": 24,
+    "weekend": null
+  },
+  "tips": [
+    "개인 셀러의 상품이 많아 셀러별 정책 확인 필수",
+    "배송 지연 시 셀러 연락처로 먼저 문의 권장",
+    "스타일링 관련 상담도 제공"
+  ],
+  "satisfaction": 3.5,
+  "last_updated": "2026-02-27",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-27",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "에이블리",
+    "ably",
+    "패션",
+    "여성의류",
+    "셀러",
+    "개인숍"
+  ]
+}

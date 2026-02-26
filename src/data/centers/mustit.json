@@ -1,0 +1,40 @@
+{
+  "id": "mustit",
+  "name": "머스트잇",
+  "category": "쇼핑",
+  "tel": "02-2025-4733",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [],
+  "avg_wait": {
+    "weekday_am": 12,
+    "weekday_pm": 18,
+    "weekday_lunch": 25,
+    "weekend": null
+  },
+  "tips": [
+    "명품 구매 전문 상담원이 상세한 정보 제공",
+    "반품/교환은 구매 후 7일 이내 가능",
+    "VIP 회원은 우선 상담 지원"
+  ],
+  "satisfaction": 3.8,
+  "last_updated": "2026-02-27",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-27",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "머스트잇",
+    "mustit",
+    "명품",
+    "luxury",
+    "럭셔리",
+    "명품쇼핑"
+  ]
+}

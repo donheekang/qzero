@@ -1,0 +1,60 @@
+{
+  "id": "disneyplus",
+  "name": "디즈니플러스",
+  "category": "엔터",
+  "tel": "080-822-1416",
+  "tel_short": null,
+  "hours": "매일 09:00~21:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "app",
+      "name": "디즈니플러스 앱",
+      "path": "프로필 > 도움말",
+      "solves": [
+        "계정문제",
+        "결제문의",
+        "스트리밍문제",
+        "기술지원"
+      ]
+    },
+    {
+      "type": "web",
+      "name": "디즈니플러스 고객지원",
+      "url": "https://www.disneyplus.com",
+      "solves": [
+        "계정문제",
+        "결제문제",
+        "구독관리",
+        "기술문제"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 7,
+    "weekday_pm": 11,
+    "weekday_lunch": 16,
+    "weekend": 9
+  },
+  "tips": [
+    "한국 상담 라인이므로 통화가 수월함",
+    "앱의 도움말 섹션에서 기본 문제 해결 가능",
+    "결제 문제는 결제 수단 확인 후 재시도"
+  ],
+  "satisfaction": 4.0,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "디즈니플러스",
+    "disney+",
+    "OTT"
+  ]
+}

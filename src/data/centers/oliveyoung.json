@@ -1,0 +1,40 @@
+{
+  "id": "oliveyoung",
+  "name": "올리브영",
+  "category": "쇼핑",
+  "tel": "1522-0882",
+  "tel_short": "매장: 1577-4887",
+  "hours": "평일 09:00~18:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [],
+  "avg_wait": {
+    "weekday_am": 10,
+    "weekday_pm": 15,
+    "weekday_lunch": 20,
+    "weekend": 12
+  },
+  "tips": [
+    "화장품 샘플 신청 시 유선 상담이 빠름",
+    "매장 재고 문의는 직접 매장 전화(1577-4887) 권장",
+    "뷰티 상담은 상품 사용 경험 기반 추천 가능"
+  ],
+  "satisfaction": 3.8,
+  "last_updated": "2026-02-27",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-27",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "올리브영",
+    "oliveyoung",
+    "화장품",
+    "뷰티",
+    "코스메틱",
+    "미용"
+  ]
+}

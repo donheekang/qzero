@@ -1,0 +1,60 @@
+{
+  "id": "koreanair",
+  "name": "대한항공",
+  "category": "항공",
+  "tel": "1588-2001",
+  "tel_short": null,
+  "hours": "매일 07:00~22:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "web",
+      "name": "대한항공 공식 홈페이지",
+      "url": "https://www.koreanair.com",
+      "solves": [
+        "항공권예약",
+        "예약조회",
+        "탑승권발급",
+        "환불신청"
+      ]
+    },
+    {
+      "type": "app",
+      "name": "대한항공 앱",
+      "path": "메뉴 > 고객센터",
+      "solves": [
+        "예약조회",
+        "탑승권발급",
+        "마일리지",
+        "환불문의"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 16,
+    "weekday_pm": 24,
+    "weekday_lunch": 32,
+    "weekend": 18
+  },
+  "tips": [
+    "예약 조회 및 탑승권 발급은 앱이나 웹에서 스스로 가능",
+    "환불은 항공권 종류에 따라 불가능할 수 있으니 미리 확인",
+    "마일리지 계좌가 있으면 마일로 항공권 예약 가능"
+  ],
+  "satisfaction": 3.9,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "대한항공",
+    "korean air",
+    "항공권"
+  ]
+}

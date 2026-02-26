@@ -1,0 +1,40 @@
+{
+  "id": "gmarket",
+  "name": "G마켓",
+  "category": "쇼핑",
+  "tel": "1566-5701",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [],
+  "avg_wait": {
+    "weekday_am": 13,
+    "weekday_pm": 19,
+    "weekday_lunch": 28,
+    "weekend": null
+  },
+  "tips": [
+    "옥션과 함께 운영되는 종합 쇼핑몰",
+    "새벽배송 서비스 이용 시 별도 상담 연락처 제공",
+    "상품 품질 관련 문의는 판매자에게 직접 연락 권장"
+  ],
+  "satisfaction": 3.5,
+  "last_updated": "2026-02-27",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-27",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "지마켓",
+    "gmarket",
+    "옥션",
+    "auction",
+    "쇼핑몰",
+    "종합쇼핑"
+  ]
+}

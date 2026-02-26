@@ -1,0 +1,60 @@
+{
+  "id": "samsunglife",
+  "name": "삼성생명",
+  "category": "보험",
+  "tel": "1588-3114",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "web",
+      "name": "삼성생명 고객센터",
+      "url": "https://www.samsunglife.com",
+      "solves": [
+        "보험료조회",
+        "청구서발급",
+        "보험금청구",
+        "계약관리"
+      ]
+    },
+    {
+      "type": "app",
+      "name": "삼성생명 앱",
+      "path": "메뉴 > 고객센터",
+      "solves": [
+        "보험료확인",
+        "청구내역",
+        "계약변경",
+        "문의접수"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 15,
+    "weekday_pm": 22,
+    "weekday_lunch": 30,
+    "weekend": null
+  },
+  "tips": [
+    "보험료 조회는 웹사이트에서 빠르게 확인 가능",
+    "보험금 청구는 미리 필요 서류를 준비해서 연락하기",
+    "계약 변경은 앱에서도 진행 가능"
+  ],
+  "satisfaction": 3.6,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "삼성생명",
+    "samsung life",
+    "생명보험"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "nts",
+  "name": "국세청",
+  "category": "공공",
+  "tel": "126",
+  "tel_short": null,
+  "hours": "평일 09:00~18:00",
+  "ars_tree": {},
+  "shortcuts": {},
+  "alternatives": [
+    {
+      "type": "web",
+      "name": "국세청 홈택스",
+      "url": "https://www.nts.go.kr",
+      "solves": [
+        "세금신고",
+        "조회신청",
+        "환급신청",
+        "증명서발급"
+      ]
+    },
+    {
+      "type": "app",
+      "name": "홈택스 모바일앱",
+      "path": "메뉴 > 고객센터",
+      "solves": [
+        "소득세신고",
+        "환급신청",
+        "증명서확인",
+        "납부내역조회"
+      ]
+    }
+  ],
+  "avg_wait": {
+    "weekday_am": 16,
+    "weekday_pm": 25,
+    "weekday_lunch": 35,
+    "weekend": null
+  },
+  "tips": [
+    "홈택스 앱에서 종합소득세 신고 가능",
+    "부가세는 별도 신고 기간이 있으니 달력 확인",
+    "환급금 신청 후 통상 7일 이내 입금"
+  ],
+  "satisfaction": 3.5,
+  "last_updated": "2026-02-26",
+  "verified_by_users": 0,
+  "freshness": {
+    "last_verified": "2026-02-26",
+    "verified_by": 0,
+    "reports_incorrect": 0,
+    "status": "unverified"
+  },
+  "update_history": [],
+  "keywords": [
+    "국세청",
+    "세금",
+    "종합소득세",
+    "부가세"
+  ]
+}

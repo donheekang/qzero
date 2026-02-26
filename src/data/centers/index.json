@@ -1,5 +1,55 @@
 [
   {
+    "id": "11st",
+    "name": "11번가",
+    "category": "쇼핑",
+    "tel": "1599-0110",
+    "keywords": [
+      "11번가",
+      "11st",
+      "십일번가",
+      "일레븐",
+      "쇼핑"
+    ]
+  },
+  {
+    "id": "ably",
+    "name": "에이블리",
+    "category": "쇼핑",
+    "tel": "1833-8021",
+    "keywords": [
+      "에이블리",
+      "ably",
+      "패션",
+      "여성의류",
+      "셀러",
+      "개인숍"
+    ]
+  },
+  {
+    "id": "apple",
+    "name": "애플코리아",
+    "category": "전자",
+    "tel": "1566-5670",
+    "keywords": [
+      "애플",
+      "apple",
+      "아이폰",
+      "맥북"
+    ]
+  },
+  {
+    "id": "asiana",
+    "name": "아시아나항공",
+    "category": "항공",
+    "tel": "1588-8000",
+    "keywords": [
+      "아시아나",
+      "asiana",
+      "항공권"
+    ]
+  },
+  {
     "id": "baemin",
     "name": "배달의민족",
     "category": "기타",
@@ -13,6 +63,17 @@
     ]
   },
   {
+    "id": "cjlogistics",
+    "name": "CJ대한통운",
+    "category": "택배",
+    "tel": "1588-1255",
+    "keywords": [
+      "CJ대한통운",
+      "cj택배",
+      "택배"
+    ]
+  },
+  {
     "id": "coupang",
     "name": "쿠팡",
     "category": "기타",
@@ -23,6 +84,81 @@
       "로켓배송",
       "로켓와우",
       "쿠팡와우"
+    ]
+  },
+  {
+    "id": "daangn",
+    "name": "당근",
+    "category": "쇼핑",
+    "tel": "1644-9736",
+    "keywords": [
+      "당근",
+      "당근마켓",
+      "daangn",
+      "중고거래",
+      "지역거래",
+      "당근마켓"
+    ]
+  },
+  {
+    "id": "daiso",
+    "name": "다이소",
+    "category": "쇼핑",
+    "tel": "1522-4400",
+    "keywords": [
+      "다이소",
+      "daiso",
+      "생활용품",
+      "1000원",
+      "생활잡화",
+      "할인마트"
+    ]
+  },
+  {
+    "id": "dbins",
+    "name": "DB손해보험",
+    "category": "보험",
+    "tel": "1588-0100",
+    "keywords": [
+      "DB손해보험",
+      "db보험",
+      "자동차보험"
+    ]
+  },
+  {
+    "id": "disneyplus",
+    "name": "디즈니플러스",
+    "category": "엔터",
+    "tel": "080-822-1416",
+    "keywords": [
+      "디즈니플러스",
+      "disney+",
+      "OTT"
+    ]
+  },
+  {
+    "id": "ei",
+    "name": "고용센터",
+    "category": "공공",
+    "tel": "1350",
+    "keywords": [
+      "고용센터",
+      "실업급여",
+      "고용보험"
+    ]
+  },
+  {
+    "id": "gmarket",
+    "name": "G마켓",
+    "category": "쇼핑",
+    "tel": "1566-5701",
+    "keywords": [
+      "지마켓",
+      "gmarket",
+      "옥션",
+      "auction",
+      "쇼핑몰",
+      "종합쇼핑"
     ]
   },
   {
@@ -55,6 +191,28 @@
     ]
   },
   {
+    "id": "hanjin",
+    "name": "한진택배",
+    "category": "택배",
+    "tel": "1588-0011",
+    "keywords": [
+      "한진택배",
+      "한진",
+      "택배"
+    ]
+  },
+  {
+    "id": "hyundaicar",
+    "name": "현대자동차",
+    "category": "자동차",
+    "tel": "080-600-6000",
+    "keywords": [
+      "현대자동차",
+      "현대차",
+      "hyundai"
+    ]
+  },
+  {
     "id": "hyundaicard",
     "name": "현대카드",
     "category": "카드",
@@ -65,6 +223,17 @@
       "현대",
       "hyundaicard",
       "m포인트"
+    ]
+  },
+  {
+    "id": "hyundaiins",
+    "name": "현대해상",
+    "category": "보험",
+    "tel": "1899-6782",
+    "keywords": [
+      "현대해상",
+      "현대해상다이렉트",
+      "자동차보험"
     ]
   },
   {
@@ -80,6 +249,27 @@
       "카카오페이",
       "카카오택시",
       "카카오뱅크"
+    ]
+  },
+  {
+    "id": "kakaobank",
+    "name": "카카오뱅크",
+    "category": "은행",
+    "tel": "1599-3333",
+    "keywords": [
+      "카카오뱅크",
+      "kakaobank"
+    ]
+  },
+  {
+    "id": "kbank",
+    "name": "케이뱅크",
+    "category": "은행",
+    "tel": "1522-1000",
+    "keywords": [
+      "케이뱅크",
+      "kbank",
+      "K뱅크"
     ]
   },
   {
@@ -110,6 +300,28 @@
     ]
   },
   {
+    "id": "kia",
+    "name": "기아자동차",
+    "category": "자동차",
+    "tel": "080-200-2000",
+    "keywords": [
+      "기아",
+      "기아자동차",
+      "kia"
+    ]
+  },
+  {
+    "id": "koreanair",
+    "name": "대한항공",
+    "category": "항공",
+    "tel": "1588-2001",
+    "keywords": [
+      "대한항공",
+      "korean air",
+      "항공권"
+    ]
+  },
+  {
     "id": "kt",
     "name": "KT",
     "category": "통신",
@@ -120,6 +332,17 @@
       "케이티텔레콤",
       "olleh",
       "올레"
+    ]
+  },
+  {
+    "id": "lg",
+    "name": "LG전자",
+    "category": "전자",
+    "tel": "1544-7777",
+    "keywords": [
+      "LG전자",
+      "lg",
+      "가전"
     ]
   },
   {
@@ -138,6 +361,17 @@
     ]
   },
   {
+    "id": "logen",
+    "name": "로젠택배",
+    "category": "택배",
+    "tel": "1588-9988",
+    "keywords": [
+      "로젠택배",
+      "로젠",
+      "택배"
+    ]
+  },
+  {
     "id": "lottecard",
     "name": "롯데카드",
     "category": "카드",
@@ -152,6 +386,34 @@
     ]
   },
   {
+    "id": "musinsa",
+    "name": "무신사",
+    "category": "쇼핑",
+    "tel": "1544-7199",
+    "keywords": [
+      "무신사",
+      "musinsa",
+      "패션",
+      "의류",
+      "남성의류",
+      "여성의류"
+    ]
+  },
+  {
+    "id": "mustit",
+    "name": "머스트잇",
+    "category": "쇼핑",
+    "tel": "02-2025-4733",
+    "keywords": [
+      "머스트잇",
+      "mustit",
+      "명품",
+      "luxury",
+      "럭셔리",
+      "명품쇼핑"
+    ]
+  },
+  {
     "id": "naver",
     "name": "네이버",
     "category": "기타",
@@ -162,6 +424,17 @@
       "네이버페이",
       "네이버쇼핑",
       "네이버블로그"
+    ]
+  },
+  {
+    "id": "netflix",
+    "name": "넷플릭스",
+    "category": "엔터",
+    "tel": "00-308-321-0161",
+    "keywords": [
+      "넷플릭스",
+      "netflix",
+      "OTT"
     ]
   },
   {
@@ -206,6 +479,58 @@
     ]
   },
   {
+    "id": "nts",
+    "name": "국세청",
+    "category": "공공",
+    "tel": "126",
+    "keywords": [
+      "국세청",
+      "세금",
+      "종합소득세",
+      "부가세"
+    ]
+  },
+  {
+    "id": "ohouse",
+    "name": "오늘의집",
+    "category": "쇼핑",
+    "tel": "1670-0876",
+    "keywords": [
+      "오늘의집",
+      "ohouse",
+      "인테리어",
+      "가구",
+      "홈데코",
+      "인테리어몰"
+    ]
+  },
+  {
+    "id": "oliveyoung",
+    "name": "올리브영",
+    "category": "쇼핑",
+    "tel": "1522-0882",
+    "keywords": [
+      "올리브영",
+      "oliveyoung",
+      "화장품",
+      "뷰티",
+      "코스메틱",
+      "미용"
+    ]
+  },
+  {
+    "id": "samsung",
+    "name": "삼성전자",
+    "category": "전자",
+    "tel": "1588-3366",
+    "keywords": [
+      "삼성전자",
+      "samsung",
+      "갤럭시",
+      "가전"
+    ]
+  },
+  {
     "id": "samsungcard",
     "name": "삼성카드",
     "category": "카드",
@@ -215,6 +540,17 @@
       "samsung",
       "삼성",
       "samsungcard"
+    ]
+  },
+  {
+    "id": "samsunglife",
+    "name": "삼성생명",
+    "category": "보험",
+    "tel": "1588-3114",
+    "keywords": [
+      "삼성생명",
+      "samsung life",
+      "생명보험"
     ]
   },
   {
@@ -259,6 +595,59 @@
     ]
   },
   {
+    "id": "ssg",
+    "name": "SSG닷컴",
+    "category": "쇼핑",
+    "tel": "1577-3419",
+    "keywords": [
+      "ssg",
+      "쓱",
+      "신세계",
+      "이마트",
+      "ssgdotcom",
+      "온라인쇼핑"
+    ]
+  },
+  {
+    "id": "tmon",
+    "name": "티몬",
+    "category": "쇼핑",
+    "tel": "1544-6240",
+    "keywords": [
+      "티몬",
+      "tmon",
+      "티켓몬스터",
+      "소셜커머스",
+      "딜",
+      "쿠폰"
+    ]
+  },
+  {
+    "id": "toss",
+    "name": "토스",
+    "category": "금융",
+    "tel": "1661-7654",
+    "keywords": [
+      "토스",
+      "토스뱅크",
+      "toss"
+    ]
+  },
+  {
+    "id": "wemakeprice",
+    "name": "위메프",
+    "category": "쇼핑",
+    "tel": "1588-4763",
+    "keywords": [
+      "위메프",
+      "wemakeprice",
+      "소셜커머스",
+      "딜",
+      "쿠폰",
+      "할인"
+    ]
+  },
+  {
     "id": "wooribank",
     "name": "우리은행",
     "category": "은행",
@@ -269,6 +658,55 @@
       "우리",
       "원뱅킹",
       "won뱅킹"
+    ]
+  },
+  {
+    "id": "yanolja",
+    "name": "야놀자",
+    "category": "여행",
+    "tel": "1644-1346",
+    "keywords": [
+      "야놀자",
+      "yanolja",
+      "숙박",
+      "호텔"
+    ]
+  },
+  {
+    "id": "yeogi",
+    "name": "여기어때",
+    "category": "여행",
+    "tel": "1670-6250",
+    "keywords": [
+      "여기어때",
+      "yeogi",
+      "숙박",
+      "호텔"
+    ]
+  },
+  {
+    "id": "yogiyo",
+    "name": "요기요",
+    "category": "배달",
+    "tel": "1661-5270",
+    "keywords": [
+      "요기요",
+      "yogiyo",
+      "배달"
+    ]
+  },
+  {
+    "id": "zigzag",
+    "name": "지그재그",
+    "category": "쇼핑",
+    "tel": "1670-8050",
+    "keywords": [
+      "지그재그",
+      "zigzag",
+      "패션",
+      "여성의류",
+      "트렌드",
+      "옷"
     ]
   }
 ]
