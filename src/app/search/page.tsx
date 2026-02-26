@@ -100,13 +100,14 @@ function SearchContent() {
         </button>
         <button
           onClick={() => setActiveTab("ai")}
-          className={`flex-1 py-2 text-sm font-medium rounded-xl transition-all ${
+          className={`flex-1 py-2 text-sm font-medium rounded-xl transition-all flex items-center justify-center gap-1.5 ${
             activeTab === "ai"
               ? "bg-[#00E59B] text-white"
               : "bg-gray-100 text-gray-500"
           }`}
         >
-          AI 물어보기
+          <span className={`w-4 h-4 rounded flex items-center justify-center text-[7px] font-bold ${activeTab === "ai" ? "bg-white/20" : "bg-gray-200"}`}>Q</span>
+          Q헬퍼
         </button>
       </div>
 
@@ -167,7 +168,7 @@ function SearchContent() {
                 onClick={() => setActiveTab("ai")}
                 className="px-5 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-xl hover:bg-gray-800 transition-colors"
               >
-                AI에게 물어보기
+                Q헬퍼에게 물어보기
               </button>
             </div>
           )}

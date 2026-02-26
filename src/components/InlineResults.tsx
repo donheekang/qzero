@@ -63,13 +63,14 @@ export default function InlineResults({ results, loading, query, onAIClick }: In
     return (
       <div className="text-center py-12">
         <p className="text-gray-600 font-medium mb-1">검색 결과가 없어요</p>
-        <p className="text-sm text-gray-400 mb-5">AI에게 직접 물어보세요</p>
+        <p className="text-sm text-gray-400 mb-5">Q헬퍼에게 직접 물어보세요</p>
         {onAIClick && (
           <button
             onClick={onAIClick}
-            className="px-5 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-xl hover:bg-gray-800 transition-colors"
+            className="px-5 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-xl hover:bg-gray-800 transition-colors flex items-center gap-2 mx-auto"
           >
-            AI에게 물어보기
+            <span className="w-5 h-5 bg-[#00E59B] rounded-md flex items-center justify-center text-[8px] font-bold">Q</span>
+            Q헬퍼에게 물어보기
           </button>
         )}
       </div>

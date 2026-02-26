@@ -111,7 +111,7 @@ export default function CenterDetailPage() {
         </div>
       )}
 
-      {/* AI Assistant - primary position */}
+      {/* Q헬퍼 - primary position */}
       <div className="mb-4">
         <AIAssistant centerId={center.id} centerName={center.name} />
       </div>
