@@ -15,7 +15,7 @@ const SIZES = {
 
 export default function CompanyLogo({ centerId, size = "md", className = "" }: CompanyLogoProps) {
   const brand = getBrandInfo(centerId);
-  const logoSrc = getLogoSrc(centerId);
+  const logoSrc = getLogoSrc();
   const s = SIZES[size];
 
   // 실제 로고 이미지가 있으면 img 태그 사용
