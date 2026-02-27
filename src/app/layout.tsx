@@ -75,7 +75,7 @@ function BottomNav() {
     },
     {
       label: "Q헬퍼",
-      href: "/search",
+      href: "/helper",
       active: false,
       icon: (
         <svg className="w-[22px] h-[22px]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -85,7 +85,7 @@ function BottomNav() {
     },
     {
       label: "탐색",
-      href: "/timer",
+      href: "/explore",
       active: false,
       icon: (
         <svg className="w-[22px] h-[22px]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -96,7 +96,7 @@ function BottomNav() {
     },
     {
       label: "마이",
-      href: "#",
+      href: "/my",
       active: false,
       icon: (
         <svg className="w-[22px] h-[22px]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
