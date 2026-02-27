@@ -50,24 +50,29 @@ function TimerContent() {
   const scriptHint = purpose ? scriptHints[purpose] || `"${purpose} 관련 문의입니다."` : undefined;
 
   return (
-    <div className="px-5 pt-6 pb-8">
+    <div className="bg-white min-h-screen">
       {/* Header */}
-      <div className="flex items-center gap-3 mb-8">
-        <button onClick={() => router.back()} className="p-2 -ml-2 text-gray-500 hover:text-gray-700">
+      <div className="flex items-center gap-4 px-5 pt-6 pb-8">
+        <button
+          onClick={() => router.back()}
+          className="w-9 h-9 rounded-full flex items-center justify-center text-[#4E5968] hover:bg-[#F4F5F7] transition-colors"
+        >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 className="text-lg font-bold text-gray-900">대기 타이머</h1>
+        <h1 className="text-[17px] font-bold text-[#191F28]">대기 타이머</h1>
       </div>
 
-      {/* Timer */}
-      <WaitTimer
-        centerName={centerName}
-        estimatedWait={estimatedWait}
-        arsPath={arsPath}
-        scriptHint={scriptHint}
-      />
+      <div className="px-5 pb-8">
+        {/* Timer */}
+        <WaitTimer
+          centerName={centerName}
+          estimatedWait={estimatedWait}
+          arsPath={arsPath}
+          scriptHint={scriptHint}
+        />
+      </div>
     </div>
   );
 }
@@ -75,8 +80,8 @@ function TimerContent() {
 export default function TimerPage() {
   return (
     <Suspense fallback={
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="w-8 h-8 border-2 border-gray-200 border-t-[#00E59B] rounded-full animate-spin" />
+      <div className="flex items-center justify-center min-h-screen bg-white">
+        <div className="w-8 h-8 border-2 border-[#F4F5F7] border-t-[#00C785] rounded-full animate-spin" />
       </div>
     }>
       <TimerContent />

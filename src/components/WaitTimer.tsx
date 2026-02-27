@@ -29,16 +29,20 @@ export default function WaitTimer({ centerName, estimatedWait, arsPath, scriptHi
 
   if (connected) {
     return (
-      <div className="text-center py-8">
-        <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+      <div className="text-center">
+        <div className="flex justify-center mb-6">
+          <div className="w-20 h-20 rounded-full bg-[#D3F9D8] flex items-center justify-center">
+            <svg className="w-10 h-10 text-[#40C057]" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+            </svg>
+          </div>
         </div>
-        <h2 className="text-xl font-bold text-gray-900 mb-2">상담원 연결됨!</h2>
-        <p className="text-sm text-gray-500">대기 시간: {formatTime(seconds)}</p>
+        <h2 className="text-[22px] font-extrabold text-[#191F28] mb-2">상담원 연결됨!</h2>
+        <p className="text-[14px] text-[#8B95A1] mb-6">대기 시간: {formatTime(seconds)}</p>
         {scriptHint && (
-          <div className="mt-4 bg-blue-50 rounded-2xl p-4 text-left">
-            <p className="text-xs text-blue-600 font-medium mb-1">상담 시 말할 멘트</p>
-            <p className="text-sm text-blue-800">{scriptHint}</p>
+          <div className="bg-[#E8F3FF] rounded-[16px] p-4 text-left">
+            <p className="text-[12px] text-[#3182F6] font-medium mb-2">상담 시 말할 멘트</p>
+            <p className="text-[14px] text-[#1B64DA]">{scriptHint}</p>
           </div>
         )}
       </div>
@@ -47,52 +51,74 @@ export default function WaitTimer({ centerName, estimatedWait, arsPath, scriptHi
 
   return (
     <div className="text-center">
-      {/* Timer display */}
-      <div className="py-8">
-        <p className="text-sm text-gray-500 mb-2">{centerName} 고객센터 대기 중</p>
-        <p className="text-5xl font-bold text-gray-900 font-mono timer-pulse">
-          {formatTime(seconds)}
-        </p>
-        {estimatedRemaining !== null && estimatedRemaining > 0 && (
-          <p className="text-sm text-gray-500 mt-2">
-            예상 남은 시간: ~{Math.ceil(estimatedRemaining / 60)}분
-          </p>
-        )}
+      {/* Timer Circle */}
+      <div className="flex justify-center mb-8">
+        <div className="relative w-[220px] h-[220px]">
+          {/* Outer animated ring */}
+          <div className="absolute inset-0 rounded-full timer-rotate" style={{
+            background: 'conic-gradient(from 0deg, #3182F6, #00C785, #F59F00, #3182F6)',
+          }} />
+          
+          {/* Inner white circle with content */}
+          <div className="absolute inset-1 rounded-full bg-white flex flex-col items-center justify-center">
+            <p className="text-[48px] font-extrabold text-[#191F28] tracking-[-2px] font-mono leading-none">
+              {formatTime(seconds)}
+            </p>
+            {estimatedRemaining !== null && estimatedRemaining > 0 && (
+              <p className="text-[14px] text-[#8B95A1] mt-2">
+                예상: ~{Math.ceil(estimatedRemaining / 60)}분
+              </p>
+            )}
+          </div>
+        </div>
       </div>
 
-      {/* ARS path reminder */}
+      {/* Center name */}
+      <p className="text-[15px] text-[#8B95A1] tracking-[-0.3px] mb-2">
+        {centerName} 고객센터 대기 중
+      </p>
+
+      {/* Status indicator */}
+      <div className="flex items-center justify-center gap-1 mb-6">
+        <div className="w-2 h-2 rounded-full bg-[#F59F00] animate-pulse" />
+        <p className="text-[14px] text-[#F59F00]">대기 중</p>
+      </div>
+
+      {/* ARS path card */}
       {arsPath && (
-        <div className="bg-gray-50 rounded-2xl p-4 mb-4 text-left">
-          <p className="text-xs text-gray-500 mb-1">ARS 경로</p>
-          <p className="font-mono font-bold text-[#00E59B]">{arsPath}</p>
+        <div className="bg-[#F4F5F7] rounded-[16px] p-4 mb-4 text-left">
+          <p className="text-[12px] text-[#8B95A1] mb-2">ARS 경로</p>
+          <p className="font-mono font-bold text-[#3182F6]">{arsPath}</p>
+        </div>
+      )}
+
+      {/* Script hint card */}
+      {scriptHint && (
+        <div className="bg-[#E8F3FF] rounded-[16px] p-4 mb-4 text-left">
+          <p className="text-[12px] text-[#3182F6] font-medium mb-2">상담 시 말할 멘트</p>
+          <p className="text-[14px] text-[#1B64DA]">{scriptHint}</p>
         </div>
       )}
 
       {/* Ad placeholder */}
-      <div className="bg-gray-50 border border-gray-200 border-dashed rounded-2xl p-6 mb-4">
-        <p className="text-xs text-gray-400">[광고 영역]</p>
-        <p className="text-sm text-gray-500 mt-1">대기 중 맞춤 정보가 여기에 표시됩니다</p>
+      <div className="bg-gradient-to-br from-[#F0F7FF] to-[#E8F3FF] rounded-[16px] p-6 mb-6 flex flex-col items-center justify-center min-h-[120px]">
+        <svg className="w-8 h-8 text-[#3182F6] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p className="text-[12px] text-[#8B95A1]">대기 중 맞춤 정보가 여기에 표시됩니다</p>
       </div>
-
-      {/* Script hint */}
-      {scriptHint && (
-        <div className="bg-blue-50 rounded-2xl p-4 mb-4 text-left">
-          <p className="text-xs text-blue-600 font-medium mb-1">상담 시 말할 멘트</p>
-          <p className="text-sm text-blue-800">{scriptHint}</p>
-        </div>
-      )}
 
       {/* Controls */}
       <div className="flex gap-3">
         <button
           onClick={() => setIsRunning(!isRunning)}
-          className="flex-1 py-3 text-sm font-medium bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-colors"
+          className="flex-1 py-4 text-[15px] font-semibold bg-[#F4F5F7] text-[#4E5968] rounded-[12px] hover:bg-[#E8EAED] transition-colors"
         >
           {isRunning ? "일시정지" : "재개"}
         </button>
         <button
           onClick={() => setConnected(true)}
-          className="flex-1 py-3 text-sm font-medium bg-[#00E59B] text-white rounded-xl hover:bg-[#00C785] transition-colors"
+          className="flex-1 py-4 text-[15px] font-semibold bg-[#00C785] text-white rounded-[12px] hover:bg-[#00B876] transition-colors"
         >
           상담원 연결됨!
         </button>

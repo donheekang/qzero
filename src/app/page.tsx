@@ -50,13 +50,22 @@ const POPULAR_CENTERS = [
   { id: "coupang", name: "쿠팡" },
   { id: "nhis", name: "건강보험" },
   { id: "kakao", name: "카카오" },
+  { id: "naver", name: "네이버" },
+  { id: "kt", name: "KT" },
 ];
 
 const QUICK_ACTIONS = [
   { query: "SKT 해지", label: "SKT 해지" },
   { query: "쿠팡 반품", label: "쿠팡 반품" },
   { query: "카드 한도", label: "카드 한도" },
+  { query: "요금제 변경", label: "요금 변경" },
   { query: "대출 상담", label: "대출 상담" },
+];
+
+const TRENDING = [
+  { query: "SKT 요금제 변경", label: "SKT 요금제 변경", desc: "T월드 앱으로 바로 해결 가능" },
+  { query: "삼성카드 한도", label: "삼성카드 한도 상향", desc: "ARS 1번 → 3번으로 빠르게" },
+  { query: "쿠팡 환불", label: "쿠팡 환불/반품", desc: "앱에서 3분이면 완료" },
 ];
 
 export default function Home() {
@@ -96,30 +105,57 @@ export default function Home() {
   };
 
   return (
-    <div className="px-5 pt-10 pb-8">
-      {/* Logo */}
-      <div className={`text-center transition-all duration-300 ${searched ? "mb-5" : "mb-8"}`}>
-        <h1 className={`font-bold text-gray-900 transition-all duration-300 ${searched ? "text-xl" : "text-3xl mb-2"}`}>
-          <span className="text-[#00E59B]">Q</span>zero
-        </h1>
-        {!searched && (
-          <p className="text-gray-400 text-sm">고객센터 문제, 검색 한 번이면 끝</p>
-        )}
+    <div className="min-h-screen">
+      {/* Header */}
+      <div className="px-6 pt-4 pb-0">
+        <div className="flex items-center justify-between mb-7">
+          <div className="flex items-center gap-[2px]">
+            <span className="text-2xl font-extrabold tracking-[-1px] text-brand-gradient">Q</span>
+            <span className="text-2xl font-extrabold tracking-[-1px] text-[#191F28]">zero</span>
+          </div>
+          {searched ? (
+            <button
+              onClick={() => { setSearched(false); setResults([]); setSearchQuery(""); }}
+              className="w-9 h-9 rounded-full bg-[#F4F5F7] flex items-center justify-center"
+            >
+              <svg className="w-5 h-5 text-[#8B95A1]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          ) : (
+            <div className="w-9 h-9 rounded-full bg-[#F4F5F7] flex items-center justify-center">
+              <svg className="w-[18px] h-[18px] text-[#8B95A1]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </div>
+          )}
+        </div>
       </div>
 
+      {/* Hero text */}
+      {!searched && (
+        <div className="px-6 mb-6 animate-fade-in">
+          <h2 className="text-[26px] font-bold leading-[1.35] tracking-[-0.6px] text-[#191F28]">
+            고객센터 문제,<br />
+            <span className="text-[#00C785]">검색 한 번</span>이면 끝
+          </h2>
+        </div>
+      )}
+
       {/* Search */}
-      <div className={`transition-all duration-300 ${searched ? "mb-4" : "mb-6"}`}>
+      <div className={`px-5 ${searched ? "mb-4" : "mb-5"}`}>
         <SearchBar autoFocus size={searched ? "sm" : "lg"} onSearch={handleSearch} />
       </div>
 
-      {/* Quick action chips - before search */}
+      {/* Quick chips */}
       {!searched && (
-        <div className="flex flex-wrap gap-2 mb-8">
+        <div className="flex gap-2 px-5 mb-7 overflow-x-auto scrollbar-hide">
           {QUICK_ACTIONS.map((item) => (
             <button
               key={item.query}
               onClick={() => handleSearch(item.query)}
-              className="px-3.5 py-1.5 bg-white border border-gray-200 rounded-full text-xs text-gray-500 hover:border-[#00E59B] hover:text-[#00E59B] transition-all"
+              className="flex-shrink-0 px-4 py-2.5 bg-white border border-[#EAEBEE] rounded-full text-sm font-medium text-[#4E5968] tracking-[-0.3px] hover:border-[#00C785] hover:text-[#00C785] hover:bg-[#E5FFF3] transition-all duration-200"
             >
               {item.label}
             </button>
@@ -127,9 +163,9 @@ export default function Home() {
         </div>
       )}
 
-      {/* Search Results (inline) */}
+      {/* Search Results */}
       {searched && (
-        <div ref={resultsRef}>
+        <div ref={resultsRef} className="bg-[#F4F5F7] min-h-[60vh] px-5 pt-4 pb-8">
           <InlineResults
             results={results}
             loading={loading}
@@ -137,14 +173,13 @@ export default function Home() {
             onAIClick={handleAIClick}
           />
 
-          {/* Q헬퍼 section */}
           {(showAI || (!loading && results.length > 0)) && (
-            <div className="mt-5 pt-5 border-t border-gray-100">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-6 h-6 bg-gradient-to-br from-[#00E59B] to-[#00C785] rounded-lg flex items-center justify-center">
-                  <span className="text-white text-[9px] font-bold">Q</span>
+            <div className="mt-4 bg-white rounded-[20px] shadow-toss p-5 animate-slide-up">
+              <div className="flex items-center gap-2.5 mb-3">
+                <div className="w-7 h-7 bg-gradient-to-br from-[#00E59B] to-[#3182F6] rounded-lg flex items-center justify-center">
+                  <span className="text-white text-[9px] font-extrabold">Q</span>
                 </div>
-                <span className="text-sm font-bold text-gray-900">Q헬퍼에게 물어보기</span>
+                <span className="text-[15px] font-bold text-[#191F28] tracking-[-0.3px]">Q헬퍼에게 물어보기</span>
               </div>
               <AIAssistant initialQuery={searchQuery} compact />
             </div>
@@ -152,57 +187,79 @@ export default function Home() {
         </div>
       )}
 
-      {/* Popular Centers - before search */}
+      {/* Before search content */}
       {!searched && (
         <>
-          {/* Q헬퍼 소개 카드 */}
-          <div className="mb-8 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-5 text-white">
-            <div className="flex items-center gap-2.5 mb-2">
-              <div className="w-8 h-8 bg-[#00E59B] rounded-xl flex items-center justify-center">
-                <span className="text-white text-sm font-bold">Q</span>
+          {/* AI Banner */}
+          <div className="px-5 mb-7">
+            <div className="relative bg-[#191F28] rounded-[20px] p-6 overflow-hidden">
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#00E59B] opacity-[0.12] rounded-full blur-3xl" />
+              <div className="absolute -bottom-8 -left-5 w-32 h-32 bg-[#3182F6] opacity-[0.08] rounded-full blur-3xl" />
+              <div className="relative z-10">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/[0.08] rounded-full mb-3.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00E59B] animate-pulse-dot" />
+                  <span className="text-[12px] font-semibold text-white/60 tracking-[-0.2px]">AI POWERED</span>
+                </div>
+                <h3 className="text-[18px] font-bold text-white leading-[1.4] tracking-[-0.4px] mb-2">
+                  Q헬퍼가 대신<br />고객센터 문제를 분석해요
+                </h3>
+                <p className="text-[14px] text-white/50 tracking-[-0.2px] mb-4">
+                  맞춤 상담 멘트부터 해지 코칭까지
+                </p>
+                <div className="flex gap-2">
+                  {["상담 가이드", "문제 분석", "멘트 생성"].map((tag) => (
+                    <span key={tag} className="px-3 py-1.5 bg-white/[0.06] border border-white/[0.08] rounded-full text-[12px] text-white/60 tracking-[-0.2px]">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div>
-                <h3 className="font-bold text-sm">Q헬퍼</h3>
-                <p className="text-[10px] text-gray-400">AI 고객센터 도우미</p>
-              </div>
-            </div>
-            <p className="text-xs text-gray-300 leading-relaxed mb-3">
-              상담 가이드, 문제 분석, 상담 멘트까지.
-              Q헬퍼가 고객센터 전화를 쉽게 만들어드려요.
-            </p>
-            <div className="flex gap-2">
-              <span className="px-2.5 py-1 bg-white/10 rounded-lg text-[10px] text-gray-300">상담 가이드</span>
-              <span className="px-2.5 py-1 bg-white/10 rounded-lg text-[10px] text-gray-300">문제 분석</span>
-              <span className="px-2.5 py-1 bg-white/10 rounded-lg text-[10px] text-gray-300">상담 멘트</span>
             </div>
           </div>
 
-          {/* Popular centers */}
-          <div>
-            <p className="text-xs text-gray-400 mb-3">자주 찾는 고객센터</p>
-            <div className="flex flex-wrap gap-2">
+          {/* Popular Centers Grid */}
+          <div className="px-5 mb-7">
+            <div className="flex items-center justify-between mb-3.5">
+              <h3 className="text-[18px] font-bold text-[#191F28] tracking-[-0.4px]">자주 찾는 고객센터</h3>
+              <span className="text-[14px] text-[#8B95A1] cursor-pointer">전체보기</span>
+            </div>
+            <div className="grid grid-cols-4 gap-3 stagger-children">
               {POPULAR_CENTERS.map((c) => (
                 <button
                   key={c.id}
                   onClick={() => router.push(`/center/${c.id}`)}
-                  className="flex items-center gap-2 px-4 py-2.5 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
+                  className="flex flex-col items-center gap-2 py-4 px-2 rounded-2xl hover:bg-[#F4F5F7] transition-colors duration-200 card-press"
                 >
-                  <CompanyLogo centerId={c.id} size="xs" />
-                  <span className="text-sm text-gray-700">{c.name}</span>
+                  <CompanyLogo centerId={c.id} size="md" />
+                  <span className="text-[12px] font-medium text-[#4E5968] tracking-[-0.2px] text-center">{c.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Trending */}
+          <div className="px-5 mb-4">
+            <h3 className="text-[18px] font-bold text-[#191F28] tracking-[-0.4px] mb-3.5">지금 많이 찾는</h3>
+            <div className="flex flex-col gap-0.5">
+              {TRENDING.map((item, i) => (
+                <button
+                  key={item.query}
+                  onClick={() => handleSearch(item.query)}
+                  className="flex items-center gap-3.5 px-4 py-3.5 rounded-xl hover:bg-[#F4F5F7] transition-colors duration-200 w-full text-left"
+                >
+                  <span className="text-[16px] font-extrabold text-[#3182F6] w-6 text-center">{i + 1}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-[15px] font-semibold text-[#191F28] tracking-[-0.3px]">{item.label}</div>
+                    <div className="text-[13px] text-[#8B95A1] mt-0.5 tracking-[-0.2px]">{item.desc}</div>
+                  </div>
+                  <svg className="w-4 h-4 text-[#B0B8C1] shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
                 </button>
               ))}
             </div>
           </div>
         </>
-      )}
-
-      {/* Footer */}
-      {!searched && (
-        <div className="text-center mt-12">
-          <p className="text-[10px] text-gray-300">
-            Qzero - 모든 고객센터를 쉽게
-          </p>
-        </div>
       )}
     </div>
   );

@@ -137,26 +137,26 @@ export default function AIAssistant({ centerId, centerName, initialQuery = "", c
       {/* Header */}
       {!compact && (
         <div className="flex items-center gap-2 mb-4">
-          <div className="w-7 h-7 bg-gradient-to-br from-[#00E59B] to-[#00C785] rounded-lg flex items-center justify-center">
+          <div className="w-7 h-7 bg-gradient-to-br from-[#00E59B] to-[#3182F6] rounded-lg flex items-center justify-center">
             <span className="text-white text-xs font-bold">Q</span>
           </div>
           <div>
-            <h2 className="text-sm font-bold text-gray-900">Q헬퍼</h2>
-            <p className="text-[10px] text-gray-400">AI가 고객센터 상담을 도와드려요</p>
+            <h2 className="text-[14px] font-bold text-[#191F28]">Q헬퍼</h2>
+            <p className="text-[12px] text-[#8B95A1]">AI가 고객센터 상담을 도와드려요</p>
           </div>
         </div>
       )}
 
       {/* Tabs */}
-      <div className="flex gap-1.5 mb-3 bg-gray-100 rounded-xl p-1">
+      <div className="flex gap-1.5 mb-3 bg-[#F4F5F7] rounded-[16px] p-1">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => handleTabChange(tab.id)}
-            className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-2 rounded-lg text-xs font-medium transition-all ${
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-2 rounded-lg text-[14px] font-medium transition-all ${
               activeTab === tab.id
-                ? "bg-white text-gray-900 shadow-sm"
-                : "text-gray-500 hover:text-gray-700"
+                ? "bg-white text-[#191F28] shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
+                : "text-[#8B95A1] hover:text-[#4E5968]"
             }`}
           >
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -168,7 +168,7 @@ export default function AIAssistant({ centerId, centerName, initialQuery = "", c
       </div>
 
       {/* Tab description */}
-      <p className="text-xs text-gray-400 mb-2">
+      <p className="text-[12px] text-[#8B95A1] mb-2">
         {tabs.find((t) => t.id === activeTab)?.desc}
       </p>
 
@@ -179,7 +179,7 @@ export default function AIAssistant({ centerId, centerName, initialQuery = "", c
           onChange={(e) => setQuery(e.target.value)}
           placeholder={placeholders[activeTab]}
           rows={2}
-          className="w-full px-4 py-3 pr-12 bg-white border border-gray-200 rounded-2xl text-sm text-gray-900 placeholder-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-[#00E59B]/30 focus:border-[#00E59B] transition-all"
+          className="w-full px-4 py-3 pr-12 bg-white border border-[#EAEBEE] rounded-[16px] text-[14px] text-[#191F28] placeholder-[#B0B8C1] resize-none focus:outline-none focus:ring-2 focus:ring-[#3182F6]/20 focus:border-[#3182F6] transition-all"
           onKeyDown={(e) => {
             if (e.key === "Enter" && !e.shiftKey) {
               e.preventDefault();
@@ -191,7 +191,7 @@ export default function AIAssistant({ centerId, centerName, initialQuery = "", c
         <button
           onClick={handleSubmit}
           disabled={!query.trim() || loading || streaming}
-          className="absolute right-2.5 bottom-2.5 w-8 h-8 rounded-xl bg-[#00E59B] text-white flex items-center justify-center hover:bg-[#00C785] disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+          className="absolute right-2.5 bottom-2.5 w-8 h-8 rounded-[12px] bg-[#3182F6] text-white flex items-center justify-center hover:bg-[#1B64DA] disabled:opacity-30 disabled:cursor-not-allowed transition-all"
         >
           {loading ? (
             <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -205,35 +205,35 @@ export default function AIAssistant({ centerId, centerName, initialQuery = "", c
 
       {/* Error */}
       {error && (
-        <div className="mt-3 px-4 py-3 bg-red-50 rounded-xl border border-red-100">
-          <p className="text-sm text-red-600">{error}</p>
+        <div className="mt-3 px-4 py-3 bg-[#FFF0F0] rounded-[16px] border border-[#FFF0F0]">
+          <p className="text-[14px] text-[#F04452]">{error}</p>
         </div>
       )}
 
       {/* Result - streaming */}
       {(result || loading) && (
-        <div ref={resultRef} className="mt-3 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 overflow-hidden">
+        <div ref={resultRef} className="mt-3 bg-white rounded-[16px] shadow-[0_2px_8px_rgba(0,0,0,0.06)] overflow-hidden">
           {/* Result header */}
-          <div className="flex items-center justify-between px-4 py-2.5 border-b border-gray-100">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-[#F4F5F7]">
             <div className="flex items-center gap-2">
-              <div className="w-5 h-5 bg-gradient-to-br from-[#00E59B] to-[#00C785] rounded-md flex items-center justify-center">
+              <div className="w-5 h-5 bg-gradient-to-br from-[#00E59B] to-[#3182F6] rounded-md flex items-center justify-center">
                 <span className="text-white text-[8px] font-bold">Q</span>
               </div>
-              <span className="text-xs font-semibold text-gray-600">
+              <span className="text-[14px] font-medium text-[#191F28]">
                 {streaming ? "Q헬퍼 답변 중..." : "Q헬퍼 답변"}
               </span>
               {streaming && (
-                <span className="w-1.5 h-1.5 bg-[#00E59B] rounded-full animate-pulse" />
+                <span className="w-1.5 h-1.5 bg-[#3182F6] rounded-full animate-pulse" />
               )}
             </div>
             {result && !streaming && (
               <button
                 onClick={handleCopy}
-                className="text-xs text-gray-400 hover:text-gray-600 flex items-center gap-1 transition-colors"
+                className="text-[14px] text-[#8B95A1] hover:text-[#4E5968] flex items-center gap-1 transition-colors"
               >
                 {copied ? (
                   <>
-                    <svg className="w-3.5 h-3.5 text-[#00E59B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3.5 h-3.5 text-[#3182F6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     복사됨
@@ -253,13 +253,13 @@ export default function AIAssistant({ centerId, centerName, initialQuery = "", c
           <div className="px-4 py-4">
             {loading && !result ? (
               <div className="flex items-center gap-2">
-                <span className="w-4 h-4 border-2 border-gray-200 border-t-[#00E59B] rounded-full animate-spin" />
-                <span className="text-sm text-gray-400">Q헬퍼가 분석 중...</span>
+                <span className="w-4 h-4 border-2 border-[#E5F3FF] border-t-[#3182F6] rounded-full animate-spin" />
+                <span className="text-[14px] text-[#8B95A1]">Q헬퍼가 분석 중...</span>
               </div>
             ) : (
-              <div className="text-sm text-gray-700 whitespace-pre-wrap leading-relaxed">
+              <div className="text-[14px] text-[#4E5968] whitespace-pre-wrap leading-relaxed">
                 {result}
-                {streaming && <span className="inline-block w-0.5 h-4 bg-[#00E59B] animate-pulse ml-0.5 align-text-bottom" />}
+                {streaming && <span className="inline-block w-0.5 h-4 bg-[#3182F6] animate-pulse ml-0.5 align-text-bottom" />}
               </div>
             )}
           </div>
