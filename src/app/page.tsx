@@ -57,11 +57,23 @@ const TRENDING = [
   { query: "쿠팡 환불", label: "쿠팡 환불/반품", desc: "앱에서 3분이면 완료" },
 ];
 
-const CATEGORIES = [
+/* ── 카테고리 탭 정의 ── */
+const TABS = [
+  { key: "all", label: "전체" },
+  { key: "telecom", label: "통신" },
+  { key: "finance", label: "금융" },
+  { key: "public", label: "공공" },
+  { key: "shopping", label: "쇼핑" },
+  { key: "life", label: "생활" },
+] as const;
+
+type TabKey = (typeof TABS)[number]["key"];
+
+/* ── 섹션 데이터 (탭별 그룹) ── */
+const SECTIONS: { tab: TabKey; title: string; items: { id: string; name: string }[] }[] = [
   {
+    tab: "telecom",
     title: "통신사",
-    icon: "📡",
-    color: "#E4002B",
     items: [
       { id: "skt", name: "SKT" },
       { id: "kt", name: "KT" },
@@ -69,9 +81,8 @@ const CATEGORIES = [
     ],
   },
   {
+    tab: "finance",
     title: "은행",
-    icon: "🏦",
-    color: "#FFBC00",
     items: [
       { id: "kbbank", name: "국민은행" },
       { id: "shinhanbank", name: "신한은행" },
@@ -84,9 +95,8 @@ const CATEGORIES = [
     ],
   },
   {
+    tab: "finance",
     title: "카드",
-    icon: "💳",
-    color: "#1428A0",
     items: [
       { id: "samsungcard", name: "삼성카드" },
       { id: "hyundaicard", name: "현대카드" },
@@ -96,9 +106,8 @@ const CATEGORIES = [
     ],
   },
   {
+    tab: "finance",
     title: "보험",
-    icon: "🛡️",
-    color: "#0B4DA2",
     items: [
       { id: "samsunglife", name: "삼성생명" },
       { id: "hyundaiins", name: "현대해상" },
@@ -106,9 +115,8 @@ const CATEGORIES = [
     ],
   },
   {
+    tab: "public",
     title: "공공기관",
-    icon: "🏛️",
-    color: "#003DA5",
     items: [
       { id: "nhis", name: "건강보험" },
       { id: "nps", name: "국민연금" },
@@ -118,9 +126,8 @@ const CATEGORIES = [
     ],
   },
   {
+    tab: "shopping",
     title: "쇼핑",
-    icon: "🛒",
-    color: "#E31837",
     items: [
       { id: "coupang", name: "쿠팡" },
       { id: "11st", name: "11번가" },
@@ -133,18 +140,16 @@ const CATEGORIES = [
     ],
   },
   {
+    tab: "shopping",
     title: "배달",
-    icon: "🍔",
-    color: "#2AC1BC",
     items: [
       { id: "baemin", name: "배민" },
       { id: "yogiyo", name: "요기요" },
     ],
   },
   {
+    tab: "life",
     title: "IT · 플랫폼",
-    icon: "💻",
-    color: "#03C75A",
     items: [
       { id: "naver", name: "네이버" },
       { id: "kakao", name: "카카오" },
@@ -153,9 +158,8 @@ const CATEGORIES = [
     ],
   },
   {
+    tab: "life",
     title: "항공 · 여행",
-    icon: "✈️",
-    color: "#00256C",
     items: [
       { id: "koreanair", name: "대한항공" },
       { id: "asiana", name: "아시아나" },
@@ -163,18 +167,16 @@ const CATEGORIES = [
     ],
   },
   {
+    tab: "life",
     title: "택배 · 물류",
-    icon: "📦",
-    color: "#E4002B",
     items: [
       { id: "cjlogistics", name: "CJ대한통운" },
       { id: "hanjin", name: "한진택배" },
     ],
   },
   {
+    tab: "life",
     title: "전자 · 자동차",
-    icon: "📱",
-    color: "#1428A0",
     items: [
       { id: "samsung", name: "삼성전자" },
       { id: "lg", name: "LG전자" },
@@ -192,6 +194,7 @@ export default function Home() {
   const [searched, setSearched] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [showAI, setShowAI] = useState(false);
+  const [activeTab, setActiveTab] = useState<TabKey>("all");
   const resultsRef = useRef<HTMLDivElement>(null);
 
   const handleSearch = async (query: string) => {
@@ -221,68 +224,70 @@ export default function Home() {
     }, 100);
   };
 
+  const filteredSections =
+    activeTab === "all" ? SECTIONS : SECTIONS.filter((s) => s.tab === activeTab);
+
   return (
-    <div className="min-h-screen">
-      {/* Header */}
-      <div className="px-6 pt-4 pb-0">
-        <div className="flex items-center justify-between mb-7">
-          <div className="flex items-center gap-[2px]">
-            <span className="text-2xl font-extrabold tracking-[-1px] text-brand-gradient">Q</span>
-            <span className="text-2xl font-extrabold tracking-[-1px] text-[#191F28]">zero</span>
-          </div>
-          {searched ? (
-            <button
-              onClick={() => { setSearched(false); setResults([]); setSearchQuery(""); }}
-              className="w-9 h-9 rounded-full bg-[#F4F5F7] flex items-center justify-center"
-            >
-              <svg className="w-5 h-5 text-[#8B95A1]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          ) : (
-            <div className="w-9 h-9 rounded-full bg-[#F4F5F7] flex items-center justify-center">
-              <svg className="w-[18px] h-[18px] text-[#8B95A1]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
+    <div className="min-h-screen bg-[#F4F5F7]">
+      {/* ── Sticky Header ── */}
+      <div className="sticky top-0 z-30 bg-white">
+        <div className="px-5 pt-4 pb-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-[2px]">
+              <span className="text-[22px] font-extrabold tracking-[-1px] text-brand-gradient">Q</span>
+              <span className="text-[22px] font-extrabold tracking-[-1px] text-[#191F28]">zero</span>
             </div>
-          )}
+            {searched ? (
+              <button
+                onClick={() => { setSearched(false); setResults([]); setSearchQuery(""); }}
+                className="w-8 h-8 rounded-full bg-[#F4F5F7] flex items-center justify-center"
+              >
+                <svg className="w-4 h-4 text-[#8B95A1]" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            ) : (
+              <div className="w-8 h-8 rounded-full bg-[#F4F5F7] flex items-center justify-center">
+                <svg className="w-[16px] h-[16px] text-[#8B95A1]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </div>
+            )}
+          </div>
         </div>
+
+        {/* ── Search ── */}
+        <div className="px-5 pb-3">
+          <SearchBar autoFocus size={searched ? "sm" : "lg"} onSearch={handleSearch} />
+        </div>
+
+        {/* ── Category Tabs (only when not searched) ── */}
+        {!searched && (
+          <div className="flex gap-1 px-5 pb-3 overflow-x-auto scrollbar-hide">
+            {TABS.map((tab) => (
+              <button
+                key={tab.key}
+                onClick={() => setActiveTab(tab.key)}
+                className={`flex-shrink-0 px-4 py-[7px] rounded-full text-[13px] font-semibold tracking-[-0.3px] transition-all duration-200 ${
+                  activeTab === tab.key
+                    ? "bg-[#191F28] text-white"
+                    : "bg-[#F4F5F7] text-[#8B95A1] hover:text-[#4E5968]"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* bottom border */}
+        <div className="h-px bg-[#F2F3F5]" />
       </div>
 
-      {/* Hero text */}
-      {!searched && (
-        <div className="px-6 mb-6 animate-fade-in">
-          <h2 className="text-[26px] font-bold leading-[1.35] tracking-[-0.6px] text-[#191F28]">
-            고객센터 문제,<br />
-            <span className="text-[#00C785]">검색 한 번</span>이면 끝
-          </h2>
-        </div>
-      )}
-
-      {/* Search */}
-      <div className={`px-5 ${searched ? "mb-4" : "mb-5"}`}>
-        <SearchBar autoFocus size={searched ? "sm" : "lg"} onSearch={handleSearch} />
-      </div>
-
-      {/* Quick chips */}
-      {!searched && (
-        <div className="flex gap-2 px-5 mb-7 overflow-x-auto scrollbar-hide">
-          {QUICK_ACTIONS.map((item) => (
-            <button
-              key={item.query}
-              onClick={() => handleSearch(item.query)}
-              className="flex-shrink-0 px-4 py-2.5 bg-white border border-[#EAEBEE] rounded-full text-sm font-medium text-[#4E5968] tracking-[-0.3px] hover:border-[#00C785] hover:text-[#00C785] hover:bg-[#E5FFF3] transition-all duration-200"
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
-      )}
-
-      {/* Search Results */}
+      {/* ── Search Results ── */}
       {searched && (
-        <div ref={resultsRef} className="bg-[#F4F5F7] min-h-[60vh] px-5 pt-4 pb-8">
+        <div ref={resultsRef} className="px-5 pt-4 pb-8">
           <InlineResults
             results={results}
             loading={loading}
@@ -304,54 +309,66 @@ export default function Home() {
         </div>
       )}
 
-      {/* Before search content */}
+      {/* ── Main Content (before search) ── */}
       {!searched && (
-        <>
-          {/* AI Banner - compact */}
-          <div className="px-5 mb-6">
+        <div className="pt-3 pb-28">
+          {/* Quick chips */}
+          <div className="flex gap-2 px-5 mb-4 overflow-x-auto scrollbar-hide">
+            {QUICK_ACTIONS.map((item) => (
+              <button
+                key={item.query}
+                onClick={() => handleSearch(item.query)}
+                className="flex-shrink-0 px-3.5 py-2 bg-white rounded-full text-[13px] font-medium text-[#4E5968] tracking-[-0.3px] shadow-[0_1px_3px_rgba(0,0,0,0.06)] hover:shadow-[0_1px_6px_rgba(0,0,0,0.1)] hover:text-[#191F28] transition-all duration-200"
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+
+          {/* AI Banner */}
+          <div className="px-4 mb-4">
             <button
               onClick={() => { handleSearch("AI 상담 도움"); }}
-              className="w-full relative bg-[#191F28] rounded-[16px] p-4 overflow-hidden flex items-center gap-4 card-press"
+              className="w-full relative bg-[#191F28] rounded-2xl p-4 overflow-hidden flex items-center gap-3.5 card-press"
             >
-              <div className="absolute -top-8 -right-8 w-32 h-32 bg-[#00E59B] opacity-[0.12] rounded-full blur-3xl" />
-              <div className="absolute -bottom-6 -left-4 w-24 h-24 bg-[#3182F6] opacity-[0.08] rounded-full blur-3xl" />
-              <div className="relative z-10 w-10 h-10 bg-gradient-to-br from-[#00E59B] to-[#3182F6] rounded-[12px] flex items-center justify-center shrink-0">
-                <span className="text-white text-[11px] font-extrabold">Q</span>
+              <div className="absolute -top-8 -right-8 w-28 h-28 bg-[#00E59B] opacity-[0.15] rounded-full blur-3xl" />
+              <div className="absolute -bottom-6 -left-4 w-20 h-20 bg-[#3182F6] opacity-[0.1] rounded-full blur-3xl" />
+              <div className="relative z-10 w-9 h-9 bg-gradient-to-br from-[#00E59B] to-[#3182F6] rounded-xl flex items-center justify-center shrink-0">
+                <span className="text-white text-[10px] font-extrabold">Q</span>
               </div>
-              <div className="relative z-10 flex-1 text-left">
-                <div className="flex items-center gap-1.5 mb-0.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00E59B] animate-pulse-dot" />
-                  <span className="text-[11px] font-semibold text-white/50 tracking-[-0.2px]">AI POWERED</span>
-                </div>
-                <h3 className="text-[15px] font-bold text-white tracking-[-0.3px]">Q헬퍼에게 무엇이든 물어보세요</h3>
+              <div className="relative z-10 flex-1 text-left min-w-0">
+                <p className="text-[10px] font-semibold text-[#00E59B] tracking-[0.5px] mb-0.5">AI POWERED</p>
+                <p className="text-[14px] font-bold text-white tracking-[-0.3px] leading-tight">Q헬퍼에게 무엇이든 물어보세요</p>
               </div>
-              <svg className="w-5 h-5 text-white/30 shrink-0 relative z-10" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <svg className="w-4 h-4 text-white/30 shrink-0 relative z-10" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </button>
           </div>
 
-          {/* Category Sections */}
-          <div className="pb-6">
-            {CATEGORIES.map((cat, catIdx) => (
-              <div key={cat.title} className="mb-5" style={{ animationDelay: `${catIdx * 40}ms` }}>
-                {/* Category Header */}
-                <div className="flex items-center gap-2 px-5 mb-2.5">
-                  <span className="text-[15px]">{cat.icon}</span>
-                  <h3 className="text-[16px] font-bold text-[#191F28] tracking-[-0.4px]">{cat.title}</h3>
-                  <span className="text-[12px] font-medium text-[#B0B8C1] ml-0.5">{cat.items.length}</span>
+          {/* ── Category Card Sections ── */}
+          <div className="px-4 flex flex-col gap-3">
+            {filteredSections.map((section) => (
+              <div
+                key={section.title}
+                className="bg-white rounded-2xl px-4 pt-4 pb-2 shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
+              >
+                {/* Section title */}
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-[15px] font-bold text-[#191F28] tracking-[-0.4px]">{section.title}</h3>
+                  <span className="text-[12px] text-[#B0B8C1] font-medium">{section.items.length}개</span>
                 </div>
 
-                {/* Scrollable Row */}
-                <div className="flex gap-2 px-5 overflow-x-auto scrollbar-hide pb-1">
-                  {cat.items.map((c) => (
+                {/* 4-column grid */}
+                <div className="grid grid-cols-4 gap-y-1">
+                  {section.items.map((c) => (
                     <button
                       key={c.id}
                       onClick={() => router.push(`/center/${c.id}`)}
-                      className="flex flex-col items-center gap-1.5 min-w-[64px] py-2.5 px-1 rounded-2xl hover:bg-[#F4F5F7] transition-colors duration-200 card-press shrink-0"
+                      className="flex flex-col items-center gap-1.5 py-2.5 rounded-xl hover:bg-[#F8F9FA] transition-colors duration-150 card-press"
                     >
                       <CompanyLogo centerId={c.id} size="md" />
-                      <span className="text-[11px] font-medium text-[#4E5968] tracking-[-0.2px] text-center whitespace-nowrap">{c.name}</span>
+                      <span className="text-[11px] font-medium text-[#6B7684] tracking-[-0.2px] text-center leading-tight">{c.name}</span>
                     </button>
                   ))}
                 </div>
@@ -359,29 +376,29 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Trending */}
-          <div className="px-5 mb-4 pt-1 border-t border-[#F2F3F5]">
-            <h3 className="text-[16px] font-bold text-[#191F28] tracking-[-0.4px] mt-5 mb-3">🔥 지금 많이 찾는</h3>
-            <div className="flex flex-col gap-0.5">
+          {/* ── Trending ── */}
+          <div className="px-4 mt-3">
+            <div className="bg-white rounded-2xl px-4 pt-4 pb-2 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+              <h3 className="text-[15px] font-bold text-[#191F28] tracking-[-0.4px] mb-2">지금 많이 찾는</h3>
               {TRENDING.map((item, i) => (
                 <button
                   key={item.query}
                   onClick={() => handleSearch(item.query)}
-                  className="flex items-center gap-3.5 px-4 py-3 rounded-xl hover:bg-[#F4F5F7] transition-colors duration-200 w-full text-left"
+                  className="flex items-center gap-3 py-3 w-full text-left border-t border-[#F4F5F7] first:border-t-0 hover:bg-[#F8F9FA] -mx-4 px-4 transition-colors duration-150"
                 >
-                  <span className="text-[15px] font-extrabold text-[#3182F6] w-5 text-center">{i + 1}</span>
+                  <span className="text-[14px] font-extrabold text-[#3182F6] w-5 text-center shrink-0">{i + 1}</span>
                   <div className="flex-1 min-w-0">
-                    <div className="text-[14px] font-semibold text-[#191F28] tracking-[-0.3px]">{item.label}</div>
-                    <div className="text-[12px] text-[#8B95A1] mt-0.5 tracking-[-0.2px]">{item.desc}</div>
+                    <p className="text-[14px] font-semibold text-[#191F28] tracking-[-0.3px]">{item.label}</p>
+                    <p className="text-[12px] text-[#8B95A1] mt-0.5 tracking-[-0.2px]">{item.desc}</p>
                   </div>
-                  <svg className="w-4 h-4 text-[#B0B8C1] shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-[#D1D6DB] shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                   </svg>
                 </button>
               ))}
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
