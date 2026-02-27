@@ -20,9 +20,11 @@ const SIZES = {
  * 기업 도메인 매핑 - 실제 파비콘/로고 로드용
  */
 const DOMAIN_MAP: Record<string, string> = {
-  skt: "sktelecom.com",
+  // 통신사
+  skt: "tworld.co.kr",          // T월드 (고객센터 대표 사이트, sktelecom.com은 AI 파비콘으로 변경됨)
   kt: "kt.com",
   lguplus: "lguplus.com",
+  // 은행
   kbbank: "kbstar.com",
   shinhanbank: "shinhan.com",
   hanabank: "kebhana.com",
@@ -31,11 +33,13 @@ const DOMAIN_MAP: Record<string, string> = {
   kakaobank: "kakaobank.com",
   kbank: "kbanknow.com",
   toss: "toss.im",
+  // 카드
   samsungcard: "samsungcard.com",
   hyundaicard: "hyundaicard.com",
   kbcard: "kbcard.com",
   shinhancard: "shinhancard.com",
   lottecard: "lottecard.co.kr",
+  // 보험/공공
   samsunglife: "samsunglife.com",
   hyundaiins: "hi.co.kr",
   dbins: "idbins.com",
@@ -44,6 +48,7 @@ const DOMAIN_MAP: Record<string, string> = {
   gov24: "gov.kr",
   nts: "nts.go.kr",
   ei: "ei.go.kr",
+  // 쇼핑
   coupang: "coupang.com",
   "11st": "11st.co.kr",
   musinsa: "musinsa.com",
@@ -51,15 +56,19 @@ const DOMAIN_MAP: Record<string, string> = {
   ssg: "ssg.com",
   baemin: "baemin.com",
   yogiyo: "yogiyo.co.kr",
+  // IT/플랫폼
   naver: "naver.com",
   kakao: "kakaocorp.com",
   netflix: "netflix.com",
   disneyplus: "disneyplus.com",
+  // 항공/여행
   koreanair: "koreanair.com",
   asiana: "flyasiana.com",
   yanolja: "yanolja.com",
+  // 물류
   cjlogistics: "cjlogistics.com",
   hanjin: "hanjin.com",
+  // 제조/기타
   samsung: "samsung.com",
   lg: "lg.com",
   apple: "apple.com",
