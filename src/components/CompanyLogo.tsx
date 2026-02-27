@@ -17,83 +17,103 @@ const SIZES = {
 };
 
 /**
- * 기업 도메인 매핑 - 실제 파비콘 로드용
+ * 기업 도메인 매핑 - 실제 파비콘/로고 로드용
  */
 const DOMAIN_MAP: Record<string, string> = {
-  skt: "www.sktelecom.com",
-  kt: "www.kt.com",
-  lguplus: "www.lguplus.com",
-  kbbank: "www.kbstar.com",
-  shinhanbank: "www.shinhan.com",
-  hanabank: "www.kebhana.com",
-  wooribank: "www.wooribank.com",
-  nonghyup: "www.nonghyup.com",
-  kakaobank: "www.kakaobank.com",
-  kbank: "www.kbanknow.com",
+  skt: "sktelecom.com",
+  kt: "kt.com",
+  lguplus: "lguplus.com",
+  kbbank: "kbstar.com",
+  shinhanbank: "shinhan.com",
+  hanabank: "kebhana.com",
+  wooribank: "wooribank.com",
+  nonghyup: "nonghyup.com",
+  kakaobank: "kakaobank.com",
+  kbank: "kbanknow.com",
   toss: "toss.im",
-  samsungcard: "www.samsungcard.com",
-  hyundaicard: "www.hyundaicard.com",
-  kbcard: "www.kbcard.com",
-  shinhancard: "www.shinhancard.com",
-  lottecard: "www.lottecard.co.kr",
-  samsunglife: "www.samsunglife.com",
-  hyundaiins: "www.hi.co.kr",
-  dbins: "www.idbins.com",
-  nhis: "www.nhis.or.kr",
-  nps: "www.nps.or.kr",
-  gov24: "www.gov.kr",
-  nts: "www.nts.go.kr",
-  ei: "www.ei.go.kr",
-  coupang: "www.coupang.com",
-  "11st": "www.11st.co.kr",
-  musinsa: "www.musinsa.com",
-  gmarket: "www.gmarket.co.kr",
-  ssg: "www.ssg.com",
-  baemin: "www.baemin.com",
-  yogiyo: "www.yogiyo.co.kr",
-  naver: "www.naver.com",
-  kakao: "www.kakaocorp.com",
-  netflix: "www.netflix.com",
-  disneyplus: "www.disneyplus.com",
-  koreanair: "www.koreanair.com",
+  samsungcard: "samsungcard.com",
+  hyundaicard: "hyundaicard.com",
+  kbcard: "kbcard.com",
+  shinhancard: "shinhancard.com",
+  lottecard: "lottecard.co.kr",
+  samsunglife: "samsunglife.com",
+  hyundaiins: "hi.co.kr",
+  dbins: "idbins.com",
+  nhis: "nhis.or.kr",
+  nps: "nps.or.kr",
+  gov24: "gov.kr",
+  nts: "nts.go.kr",
+  ei: "ei.go.kr",
+  coupang: "coupang.com",
+  "11st": "11st.co.kr",
+  musinsa: "musinsa.com",
+  gmarket: "gmarket.co.kr",
+  ssg: "ssg.com",
+  baemin: "baemin.com",
+  yogiyo: "yogiyo.co.kr",
+  naver: "naver.com",
+  kakao: "kakaocorp.com",
+  netflix: "netflix.com",
+  disneyplus: "disneyplus.com",
+  koreanair: "koreanair.com",
   asiana: "flyasiana.com",
-  yanolja: "www.yanolja.com",
-  cjlogistics: "www.cjlogistics.com",
-  hanjin: "www.hanjin.com",
-  samsung: "www.samsung.com",
-  lg: "www.lg.com",
-  apple: "www.apple.com",
-  hyundaicar: "www.hyundai.com",
-  kia: "www.kia.com",
-  daangn: "www.daangn.com",
-  oliveyoung: "www.oliveyoung.co.kr",
+  yanolja: "yanolja.com",
+  cjlogistics: "cjlogistics.com",
+  hanjin: "hanjin.com",
+  samsung: "samsung.com",
+  lg: "lg.com",
+  apple: "apple.com",
+  hyundaicar: "hyundai.com",
+  kia: "kia.com",
+  daangn: "daangn.com",
+  oliveyoung: "oliveyoung.co.kr",
   ohouse: "ohou.se",
 };
+
+/**
+ * 로고 URL 소스들 (순서대로 시도)
+ * 1. Google gstatic Favicon API - 가장 안정적
+ * 2. Google s2 Favicon API - 폴백
+ */
+function getLogoUrls(domain: string): string[] {
+  return [
+    `https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${domain}&size=128`,
+    `https://www.google.com/s2/favicons?domain=${domain}&sz=128`,
+  ];
+}
 
 export default function CompanyLogo({ centerId, size = "md", className = "" }: CompanyLogoProps) {
   const brand = getBrandInfo(centerId);
   const s = SIZES[size];
-  const [imgError, setImgError] = useState(false);
+  const [urlIndex, setUrlIndex] = useState(0);
+  const [allFailed, setAllFailed] = useState(false);
   const domain = DOMAIN_MAP[centerId];
 
-  // 이미지 로고를 사용할 수 있으면 img 태그, 아니면 텍스트 폴백
-  const logoUrl = domain
-    ? `https://img.logo.dev/${domain}?token=pk_a8TNhdPcSEuLHCavGQqNQw&size=128&format=png`
-    : null;
+  const logoUrls = domain ? getLogoUrls(domain) : [];
 
-  if (logoUrl && !imgError) {
+  const handleError = () => {
+    if (urlIndex < logoUrls.length - 1) {
+      setUrlIndex(urlIndex + 1);
+    } else {
+      setAllFailed(true);
+    }
+  };
+
+  // 이미지 로고
+  if (domain && !allFailed && logoUrls.length > 0) {
     return (
       <div
         className={`${s.container} ${s.radius} shrink-0 overflow-hidden bg-white shadow-toss flex items-center justify-center ${className}`}
       >
         <img
-          src={logoUrl}
+          src={logoUrls[urlIndex]}
           alt={`${brand.initial} logo`}
           width={s.px}
           height={s.px}
-          className={`${s.container} object-contain p-1`}
-          onError={() => setImgError(true)}
+          className={`${s.container} object-contain p-1.5`}
+          onError={handleError}
           loading="lazy"
+          referrerPolicy="no-referrer"
         />
       </div>
     );
