@@ -2,11 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-
-interface RecentSearch {
-  query: string;
-  timestamp?: number;
-}
+import {
+  useAuth,
+  signInWithKakao,
+  signInWithGoogle,
+  signOut,
+  getUserDisplayName,
+  getUserAvatar,
+  getUserEmail,
+} from "@/lib/auth";
 
 interface Favorite {
   id: string;
@@ -16,22 +20,23 @@ interface Favorite {
 
 export default function MyPage() {
   const router = useRouter();
-  const [recentSearches, setRecentSearches] = useState<RecentSearch[]>([]);
+  const { user, loading: authLoading } = useAuth();
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const [favorites, setFavorites] = useState<Favorite[]>([]);
   const [notifications, setNotifications] = useState(false);
+  const [showLoginSheet, setShowLoginSheet] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
 
   /* 로컬스토리지에서 데이터 로드 */
   useEffect(() => {
     try {
       const saved = JSON.parse(localStorage.getItem("qzero_recent") || "[]") as string[];
-      setRecentSearches(saved.map((q) => ({ query: q })));
+      setRecentSearches(saved);
     } catch { /* noop */ }
-
     try {
       const fav = JSON.parse(localStorage.getItem("qzero_favorites") || "[]") as Favorite[];
       setFavorites(fav);
     } catch { /* noop */ }
-
     try {
       setNotifications(localStorage.getItem("qzero_notif") === "true");
     } catch { /* noop */ }
@@ -54,6 +59,34 @@ export default function MyPage() {
     localStorage.setItem("qzero_notif", String(next));
   };
 
+  const handleKakaoLogin = async () => {
+    setLoginLoading(true);
+    try {
+      await signInWithKakao();
+    } catch {
+      setLoginLoading(false);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    setLoginLoading(true);
+    try {
+      await signInWithGoogle();
+    } catch {
+      setLoginLoading(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+    } catch { /* noop */ }
+  };
+
+  const displayName = getUserDisplayName(user);
+  const avatarUrl = getUserAvatar(user);
+  const email = getUserEmail(user);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -64,21 +97,61 @@ export default function MyPage() {
       {/* Profile card */}
       <div className="px-5 pb-5">
         <div className="bg-[#F4F5F7] rounded-2xl p-5">
-          <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-full bg-[#EAEBEE] flex items-center justify-center">
-              <svg className="w-7 h-7 text-[#B0B8C1]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                <circle cx="12" cy="8" r="4" />
-                <path strokeLinecap="round" d="M5 20c0-3.87 3.13-7 7-7s7 3.13 7 7" />
-              </svg>
+          {authLoading ? (
+            <div className="flex items-center justify-center py-4">
+              <div className="w-6 h-6 border-2 border-[#EAEBEE] border-t-[#3182F6] rounded-full animate-spin" />
             </div>
-            <div className="flex-1">
-              <p className="text-[16px] font-bold text-[#191F28]">게스트</p>
-              <p className="text-[13px] text-[#8B95A1] mt-0.5">로그인하면 데이터가 동기화돼요</p>
-            </div>
-          </div>
-          <button className="w-full mt-4 py-2.5 bg-[#191F28] text-white rounded-xl text-[14px] font-semibold hover:bg-[#0F1419] transition-colors">
-            로그인 / 회원가입
-          </button>
+          ) : user ? (
+            /* 로그인된 상태 */
+            <>
+              <div className="flex items-center gap-4">
+                {avatarUrl ? (
+                  <img
+                    src={avatarUrl}
+                    alt="프로필"
+                    className="w-14 h-14 rounded-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#00E59B] to-[#3182F6] flex items-center justify-center">
+                    <span className="text-white text-[18px] font-bold">{displayName[0]}</span>
+                  </div>
+                )}
+                <div className="flex-1 min-w-0">
+                  <p className="text-[16px] font-bold text-[#191F28] truncate">{displayName}</p>
+                  {email && <p className="text-[13px] text-[#8B95A1] mt-0.5 truncate">{email}</p>}
+                </div>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="w-full mt-4 py-2.5 bg-white text-[#8B95A1] rounded-xl text-[14px] font-semibold hover:bg-[#EAEBEE] transition-colors border border-[#EAEBEE]"
+              >
+                로그아웃
+              </button>
+            </>
+          ) : (
+            /* 비로그인 상태 */
+            <>
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-full bg-[#EAEBEE] flex items-center justify-center">
+                  <svg className="w-7 h-7 text-[#B0B8C1]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                    <circle cx="12" cy="8" r="4" />
+                    <path strokeLinecap="round" d="M5 20c0-3.87 3.13-7 7-7s7 3.13 7 7" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <p className="text-[16px] font-bold text-[#191F28]">게스트</p>
+                  <p className="text-[13px] text-[#8B95A1] mt-0.5">로그인하면 데이터가 동기화돼요</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowLoginSheet(true)}
+                className="w-full mt-4 py-2.5 bg-[#191F28] text-white rounded-xl text-[14px] font-semibold hover:bg-[#0F1419] transition-colors"
+              >
+                로그인 / 회원가입
+              </button>
+            </>
+          )}
         </div>
       </div>
 
@@ -101,17 +174,17 @@ export default function MyPage() {
           <p className="text-[14px] text-[#B0B8C1] py-6 text-center">최근 검색 기록이 없어요</p>
         ) : (
           <div className="space-y-0">
-            {recentSearches.slice(0, 10).map((item, i) => (
+            {recentSearches.slice(0, 10).map((query, i) => (
               <button
                 key={i}
-                onClick={() => router.push(`/search?q=${encodeURIComponent(item.query)}`)}
+                onClick={() => router.push(`/search?q=${encodeURIComponent(query)}`)}
                 className="flex items-center gap-3 py-3 w-full text-left border-b border-[#F4F5F7] last:border-b-0 hover:bg-[#FAFBFC] transition-colors -mx-1 px-1 rounded"
               >
                 <svg className="w-4 h-4 text-[#B0B8C1] shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                   <circle cx="11" cy="11" r="7" />
                   <path strokeLinecap="round" d="M21 21l-4.35-4.35" />
                 </svg>
-                <span className="text-[14px] text-[#4E5968] flex-1 truncate">{item.query}</span>
+                <span className="text-[14px] text-[#4E5968] flex-1 truncate">{query}</span>
                 <svg className="w-3.5 h-3.5 text-[#D1D6DB] shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
@@ -212,9 +285,65 @@ export default function MyPage() {
           ))}
         </div>
 
-        {/* App version */}
         <p className="text-center text-[12px] text-[#D1D6DB] mt-6">Qzero v1.0.0</p>
       </section>
+
+      {/* ── Login Bottom Sheet ── */}
+      {showLoginSheet && (
+        <div className="fixed inset-0 z-[100]">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/40 transition-opacity"
+            onClick={() => !loginLoading && setShowLoginSheet(false)}
+          />
+          {/* Sheet */}
+          <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-[24px] px-5 pt-6 pb-[max(24px,env(safe-area-inset-bottom))] animate-slide-up">
+            {/* Handle */}
+            <div className="w-10 h-1 bg-[#EAEBEE] rounded-full mx-auto mb-5" />
+
+            <h2 className="text-[20px] font-extrabold text-[#191F28] tracking-[-0.5px] mb-1">
+              로그인
+            </h2>
+            <p className="text-[14px] text-[#8B95A1] mb-6">
+              검색 기록과 즐겨찾기가 동기화돼요
+            </p>
+
+            <div className="space-y-3">
+              {/* 카카오 로그인 */}
+              <button
+                onClick={handleKakaoLogin}
+                disabled={loginLoading}
+                className="w-full py-3.5 rounded-xl text-[15px] font-semibold flex items-center justify-center gap-2.5 transition-colors disabled:opacity-50"
+                style={{ backgroundColor: "#FEE500", color: "#191919" }}
+              >
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M9 0.6C4.02 0.6 0 3.713 0 7.56C0 9.97 1.558 12.097 3.93 13.35L2.933 16.828C2.844 17.138 3.213 17.384 3.48 17.205L7.57 14.473C8.04 14.52 8.516 14.52 9 14.52C13.98 14.52 18 11.407 18 7.56C18 3.713 13.98 0.6 9 0.6Z" fill="#191919"/>
+                </svg>
+                카카오로 시작하기
+              </button>
+
+              {/* 구글 로그인 */}
+              <button
+                onClick={handleGoogleLogin}
+                disabled={loginLoading}
+                className="w-full py-3.5 rounded-xl text-[15px] font-semibold flex items-center justify-center gap-2.5 bg-white border border-[#DADCE0] text-[#3C4043] hover:bg-[#F8F9FA] transition-colors disabled:opacity-50"
+              >
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M17.64 9.205c0-.639-.057-1.252-.164-1.841H9v3.481h4.844a4.14 4.14 0 01-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
+                  <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z" fill="#34A853"/>
+                  <path d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.997 8.997 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+                  <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
+                </svg>
+                Google로 시작하기
+              </button>
+            </div>
+
+            <p className="text-[12px] text-[#B0B8C1] text-center mt-5 leading-relaxed">
+              로그인 시 이용약관 및 개인정보 처리방침에 동의합니다
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

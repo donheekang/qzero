@@ -6,6 +6,7 @@ import SearchBar from "@/components/SearchBar";
 import InlineResults from "@/components/InlineResults";
 import AIAssistant from "@/components/AIAssistant";
 import CompanyLogo from "@/components/CompanyLogo";
+import { useAuth, getUserDisplayName, getUserAvatar } from "@/lib/auth";
 
 /* ── Types ── */
 interface SearchResultItem {
@@ -123,6 +124,9 @@ const POPULAR = [
    ══════════════════════════════════════ */
 export default function Home() {
   const router = useRouter();
+  const { user } = useAuth();
+  const avatarUrl = getUserAvatar(user);
+  const displayName = getUserDisplayName(user);
   const [results, setResults] = useState<SearchResultItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
@@ -175,11 +179,18 @@ export default function Home() {
             </svg>
           </button>
         ) : (
-          <button className="w-8 h-8 rounded-full bg-[#F4F5F7] flex items-center justify-center">
-            <svg className="w-4 h-4 text-[#8B95A1]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-              <circle cx="12" cy="8" r="3.5" />
-              <path strokeLinecap="round" d="M6.5 20c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5" />
-            </svg>
+          <button
+            onClick={() => router.push("/my")}
+            className="w-8 h-8 rounded-full bg-[#F4F5F7] flex items-center justify-center overflow-hidden"
+          >
+            {avatarUrl ? (
+              <img src={avatarUrl} alt={displayName} className="w-8 h-8 rounded-full object-cover" referrerPolicy="no-referrer" />
+            ) : (
+              <svg className="w-4 h-4 text-[#8B95A1]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="3.5" />
+                <path strokeLinecap="round" d="M6.5 20c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5" />
+              </svg>
+            )}
           </button>
         )}
       </header>
