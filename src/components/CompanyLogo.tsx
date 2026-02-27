@@ -9,22 +9,19 @@ interface CompanyLogoProps {
   className?: string;
 }
 
+/* ── Toss-style sizes ── */
 const SIZES = {
-  xs: { container: "w-8 h-8", text: "text-[10px]", radius: "rounded-lg", px: 32 },
-  sm: { container: "w-10 h-10", text: "text-xs", radius: "rounded-xl", px: 40 },
-  md: { container: "w-12 h-12", text: "text-sm", radius: "rounded-xl", px: 48 },
-  lg: { container: "w-14 h-14", text: "text-base", radius: "rounded-2xl", px: 56 },
+  xs: { box: "w-8 h-8", text: "text-[10px]", r: "rounded-[10px]", px: 32, pad: "p-1" },
+  sm: { box: "w-10 h-10", text: "text-[11px]", r: "rounded-[12px]", px: 40, pad: "p-1.5" },
+  md: { box: "w-[46px] h-[46px]", text: "text-[12px]", r: "rounded-[13px]", px: 46, pad: "p-[6px]" },
+  lg: { box: "w-[52px] h-[52px]", text: "text-sm", r: "rounded-[15px]", px: 52, pad: "p-[7px]" },
 };
 
-/**
- * 기업 도메인 매핑 - 실제 파비콘/로고 로드용
- */
+/* ── Domain map ── */
 const DOMAIN_MAP: Record<string, string> = {
-  // 통신사
-  skt: "tworld.co.kr",          // T월드 (고객센터 대표 사이트, sktelecom.com은 AI 파비콘으로 변경됨)
+  skt: "tworld.co.kr",
   kt: "kt.com",
   lguplus: "lguplus.com",
-  // 은행
   kbbank: "kbstar.com",
   shinhanbank: "shinhan.com",
   hanabank: "kebhana.com",
@@ -33,13 +30,11 @@ const DOMAIN_MAP: Record<string, string> = {
   kakaobank: "kakaobank.com",
   kbank: "kbanknow.com",
   toss: "toss.im",
-  // 카드
   samsungcard: "samsungcard.com",
   hyundaicard: "hyundaicard.com",
   kbcard: "kbcard.com",
   shinhancard: "shinhancard.com",
   lottecard: "lottecard.co.kr",
-  // 보험/공공
   samsunglife: "samsunglife.com",
   hyundaiins: "hi.co.kr",
   dbins: "idbins.com",
@@ -48,7 +43,6 @@ const DOMAIN_MAP: Record<string, string> = {
   gov24: "gov.kr",
   nts: "nts.go.kr",
   ei: "ei.go.kr",
-  // 쇼핑
   coupang: "coupang.com",
   "11st": "11st.co.kr",
   musinsa: "musinsa.com",
@@ -56,19 +50,15 @@ const DOMAIN_MAP: Record<string, string> = {
   ssg: "ssg.com",
   baemin: "baemin.com",
   yogiyo: "yogiyo.co.kr",
-  // IT/플랫폼
   naver: "naver.com",
   kakao: "kakaocorp.com",
   netflix: "netflix.com",
   disneyplus: "disneyplus.com",
-  // 항공/여행
   koreanair: "koreanair.com",
   asiana: "flyasiana.com",
   yanolja: "yanolja.com",
-  // 물류
   cjlogistics: "cjlogistics.com",
   hanjin: "hanjin.com",
-  // 제조/기타
   samsung: "samsung.com",
   lg: "lg.com",
   apple: "apple.com",
@@ -79,11 +69,6 @@ const DOMAIN_MAP: Record<string, string> = {
   ohouse: "ohou.se",
 };
 
-/**
- * 로고 URL 소스들 (순서대로 시도)
- * 1. Google gstatic Favicon API - 가장 안정적
- * 2. Google s2 Favicon API - 폴백
- */
 function getLogoUrls(domain: string): string[] {
   return [
     `https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${domain}&size=128`,
@@ -97,29 +82,23 @@ export default function CompanyLogo({ centerId, size = "md", className = "" }: C
   const [urlIndex, setUrlIndex] = useState(0);
   const [allFailed, setAllFailed] = useState(false);
   const domain = DOMAIN_MAP[centerId];
-
   const logoUrls = domain ? getLogoUrls(domain) : [];
 
   const handleError = () => {
-    if (urlIndex < logoUrls.length - 1) {
-      setUrlIndex(urlIndex + 1);
-    } else {
-      setAllFailed(true);
-    }
+    if (urlIndex < logoUrls.length - 1) setUrlIndex(urlIndex + 1);
+    else setAllFailed(true);
   };
 
-  // 이미지 로고
+  /* Image logo */
   if (domain && !allFailed && logoUrls.length > 0) {
     return (
-      <div
-        className={`${s.container} ${s.radius} shrink-0 overflow-hidden bg-white shadow-toss flex items-center justify-center ${className}`}
-      >
+      <div className={`${s.box} ${s.r} shrink-0 overflow-hidden bg-white border border-[#F2F3F5] flex items-center justify-center ${className}`}>
         <img
           src={logoUrls[urlIndex]}
           alt={`${brand.initial} logo`}
           width={s.px}
           height={s.px}
-          className={`${s.container} object-contain p-1.5`}
+          className={`${s.box} object-contain ${s.pad}`}
           onError={handleError}
           loading="lazy"
           referrerPolicy="no-referrer"
@@ -128,28 +107,15 @@ export default function CompanyLogo({ centerId, size = "md", className = "" }: C
     );
   }
 
-  // Fallback: 그라데이션 텍스트 아이콘
+  /* Fallback text icon */
   return (
     <div
-      className={`${s.container} ${s.radius} flex items-center justify-center shrink-0 shadow-toss ${className}`}
-      style={{
-        background: `linear-gradient(135deg, ${brand.bgColor}, ${adjustColor(brand.bgColor, 20)})`,
-      }}
+      className={`${s.box} ${s.r} flex items-center justify-center shrink-0 border border-[#F2F3F5] ${className}`}
+      style={{ background: brand.bgColor }}
     >
-      <span
-        className={`${s.text} font-extrabold leading-none`}
-        style={{ color: brand.textColor }}
-      >
+      <span className={`${s.text} font-bold leading-none`} style={{ color: brand.textColor }}>
         {brand.initial}
       </span>
     </div>
   );
-}
-
-function adjustColor(hex: string, amount: number): string {
-  const num = parseInt(hex.replace("#", ""), 16);
-  const r = Math.min(255, (num >> 16) + amount);
-  const g = Math.min(255, ((num >> 8) & 0x00ff) + amount);
-  const b = Math.min(255, (num & 0x0000ff) + amount);
-  return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1)}`;
 }

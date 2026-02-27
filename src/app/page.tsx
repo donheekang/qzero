@@ -7,6 +7,7 @@ import InlineResults from "@/components/InlineResults";
 import AIAssistant from "@/components/AIAssistant";
 import CompanyLogo from "@/components/CompanyLogo";
 
+/* ── Types ── */
 interface SearchResultItem {
   center: {
     id: string;
@@ -43,36 +44,47 @@ interface SearchResultItem {
   confidence: number;
 }
 
-const QUICK_ACTIONS = [
-  { query: "SKT 해지", label: "SKT 해지" },
-  { query: "쿠팡 반품", label: "쿠팡 반품" },
-  { query: "카드 한도", label: "카드 한도" },
-  { query: "요금제 변경", label: "요금 변경" },
-  { query: "대출 상담", label: "대출 상담" },
+/* ── Data ── */
+const POPULAR = [
+  { id: "skt", name: "SKT" },
+  { id: "kbbank", name: "국민은행" },
+  { id: "samsungcard", name: "삼성카드" },
+  { id: "coupang", name: "쿠팡" },
+  { id: "nhis", name: "건강보험" },
+  { id: "kakao", name: "카카오" },
+  { id: "naver", name: "네이버" },
+  { id: "kt", name: "KT" },
+];
+
+const QUICK = [
+  { q: "SKT 해지", l: "SKT 해지" },
+  { q: "쿠팡 반품", l: "쿠팡 반품" },
+  { q: "카드 한도 조회", l: "카드 한도" },
+  { q: "요금제 변경", l: "요금 변경" },
+  { q: "대출 상담", l: "대출 상담" },
+  { q: "넷플릭스 해지", l: "넷플릭스 해지" },
 ];
 
 const TRENDING = [
-  { query: "SKT 요금제 변경", label: "SKT 요금제 변경", desc: "T월드 앱으로 바로 해결 가능" },
-  { query: "삼성카드 한도", label: "삼성카드 한도 상향", desc: "ARS 1번 → 3번으로 빠르게" },
-  { query: "쿠팡 환불", label: "쿠팡 환불/반품", desc: "앱에서 3분이면 완료" },
+  { q: "SKT 요금제 변경", l: "SKT 요금제 변경", d: "T월드 앱에서 바로 가능" },
+  { q: "삼성카드 한도", l: "삼성카드 한도 상향", d: "ARS 1번 → 3번 빠른 연결" },
+  { q: "쿠팡 환불", l: "쿠팡 환불/반품", d: "앱에서 3분 완료" },
 ];
 
-/* ── 카테고리 탭 정의 ── */
-const TABS = [
-  { key: "all", label: "전체" },
-  { key: "telecom", label: "통신" },
-  { key: "finance", label: "금융" },
-  { key: "public", label: "공공" },
-  { key: "shopping", label: "쇼핑" },
-  { key: "life", label: "생활" },
-] as const;
+/* ── 카테고리 탭 ── */
+const TABS = ["전체", "통신", "금융", "공공", "쇼핑", "생활"] as const;
+type Tab = (typeof TABS)[number];
 
-type TabKey = (typeof TABS)[number]["key"];
+const TAB_MAP: Record<Exclude<Tab, "전체">, string[]> = {
+  통신: ["통신사"],
+  금융: ["은행", "카드", "보험"],
+  공공: ["공공기관"],
+  쇼핑: ["쇼핑", "배달"],
+  생활: ["IT · 플랫폼", "항공 · 여행", "택배 · 물류", "전자 · 자동차"],
+};
 
-/* ── 섹션 데이터 (탭별 그룹) ── */
-const SECTIONS: { tab: TabKey; title: string; items: { id: string; name: string }[] }[] = [
+const SECTIONS = [
   {
-    tab: "telecom",
     title: "통신사",
     items: [
       { id: "skt", name: "SKT" },
@@ -81,7 +93,6 @@ const SECTIONS: { tab: TabKey; title: string; items: { id: string; name: string 
     ],
   },
   {
-    tab: "finance",
     title: "은행",
     items: [
       { id: "kbbank", name: "국민은행" },
@@ -95,7 +106,6 @@ const SECTIONS: { tab: TabKey; title: string; items: { id: string; name: string 
     ],
   },
   {
-    tab: "finance",
     title: "카드",
     items: [
       { id: "samsungcard", name: "삼성카드" },
@@ -106,7 +116,6 @@ const SECTIONS: { tab: TabKey; title: string; items: { id: string; name: string 
     ],
   },
   {
-    tab: "finance",
     title: "보험",
     items: [
       { id: "samsunglife", name: "삼성생명" },
@@ -115,7 +124,6 @@ const SECTIONS: { tab: TabKey; title: string; items: { id: string; name: string 
     ],
   },
   {
-    tab: "public",
     title: "공공기관",
     items: [
       { id: "nhis", name: "건강보험" },
@@ -126,7 +134,6 @@ const SECTIONS: { tab: TabKey; title: string; items: { id: string; name: string 
     ],
   },
   {
-    tab: "shopping",
     title: "쇼핑",
     items: [
       { id: "coupang", name: "쿠팡" },
@@ -140,7 +147,6 @@ const SECTIONS: { tab: TabKey; title: string; items: { id: string; name: string 
     ],
   },
   {
-    tab: "shopping",
     title: "배달",
     items: [
       { id: "baemin", name: "배민" },
@@ -148,7 +154,6 @@ const SECTIONS: { tab: TabKey; title: string; items: { id: string; name: string 
     ],
   },
   {
-    tab: "life",
     title: "IT · 플랫폼",
     items: [
       { id: "naver", name: "네이버" },
@@ -158,7 +163,6 @@ const SECTIONS: { tab: TabKey; title: string; items: { id: string; name: string 
     ],
   },
   {
-    tab: "life",
     title: "항공 · 여행",
     items: [
       { id: "koreanair", name: "대한항공" },
@@ -167,7 +171,6 @@ const SECTIONS: { tab: TabKey; title: string; items: { id: string; name: string 
     ],
   },
   {
-    tab: "life",
     title: "택배 · 물류",
     items: [
       { id: "cjlogistics", name: "CJ대한통운" },
@@ -175,7 +178,6 @@ const SECTIONS: { tab: TabKey; title: string; items: { id: string; name: string 
     ],
   },
   {
-    tab: "life",
     title: "전자 · 자동차",
     items: [
       { id: "samsung", name: "삼성전자" },
@@ -187,6 +189,9 @@ const SECTIONS: { tab: TabKey; title: string; items: { id: string; name: string 
   },
 ];
 
+/* ══════════════════════════════════════
+   Home Component
+   ══════════════════════════════════════ */
 export default function Home() {
   const router = useRouter();
   const [results, setResults] = useState<SearchResultItem[]>([]);
@@ -194,7 +199,7 @@ export default function Home() {
   const [searched, setSearched] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [showAI, setShowAI] = useState(false);
-  const [activeTab, setActiveTab] = useState<TabKey>("all");
+  const [tab, setTab] = useState<Tab>("전체");
   const resultsRef = useRef<HTMLDivElement>(null);
 
   const handleSearch = async (query: string) => {
@@ -202,7 +207,6 @@ export default function Home() {
     setSearched(true);
     setLoading(true);
     setShowAI(false);
-
     try {
       const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
       const data = await res.json();
@@ -224,79 +228,51 @@ export default function Home() {
     }, 100);
   };
 
-  const filteredSections =
-    activeTab === "all" ? SECTIONS : SECTIONS.filter((s) => s.tab === activeTab);
+  const visibleSections =
+    tab === "전체"
+      ? SECTIONS
+      : SECTIONS.filter((s) => TAB_MAP[tab]?.includes(s.title));
 
+  /* ── Render ── */
   return (
-    <div className="min-h-screen bg-[#F4F5F7]">
-      {/* ── Sticky Header ── */}
-      <div className="sticky top-0 z-30 bg-white">
-        <div className="px-5 pt-4 pb-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-[2px]">
-              <span className="text-[22px] font-extrabold tracking-[-1px] text-brand-gradient">Q</span>
-              <span className="text-[22px] font-extrabold tracking-[-1px] text-[#191F28]">zero</span>
-            </div>
-            {searched ? (
-              <button
-                onClick={() => { setSearched(false); setResults([]); setSearchQuery(""); }}
-                className="w-8 h-8 rounded-full bg-[#F4F5F7] flex items-center justify-center"
-              >
-                <svg className="w-4 h-4 text-[#8B95A1]" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            ) : (
-              <div className="w-8 h-8 rounded-full bg-[#F4F5F7] flex items-center justify-center">
-                <svg className="w-[16px] h-[16px] text-[#8B95A1]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                  <circle cx="12" cy="7" r="4" />
-                </svg>
-              </div>
-            )}
-          </div>
-        </div>
+    <div className="min-h-screen bg-white">
 
-        {/* ── Search ── */}
-        <div className="px-5 pb-3">
-          <SearchBar autoFocus size={searched ? "sm" : "lg"} onSearch={handleSearch} />
+      {/* ━━━ Header ━━━ */}
+      <header className="px-5 pt-[14px] pb-2 flex items-center justify-between">
+        <div className="flex items-baseline gap-[1px]">
+          <span className="text-[22px] font-extrabold tracking-[-0.8px] text-brand-gradient">Q</span>
+          <span className="text-[22px] font-extrabold tracking-[-0.8px] text-[#191F28]">zero</span>
         </div>
-
-        {/* ── Category Tabs (only when not searched) ── */}
-        {!searched && (
-          <div className="flex gap-1 px-5 pb-3 overflow-x-auto scrollbar-hide">
-            {TABS.map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => setActiveTab(tab.key)}
-                className={`flex-shrink-0 px-4 py-[7px] rounded-full text-[13px] font-semibold tracking-[-0.3px] transition-all duration-200 ${
-                  activeTab === tab.key
-                    ? "bg-[#191F28] text-white"
-                    : "bg-[#F4F5F7] text-[#8B95A1] hover:text-[#4E5968]"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
+        {searched ? (
+          <button
+            onClick={() => { setSearched(false); setResults([]); setSearchQuery(""); }}
+            className="w-8 h-8 rounded-full bg-[#F4F5F7] flex items-center justify-center press"
+          >
+            <svg className="w-4 h-4 text-[#8B95A1]" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        ) : (
+          <button className="w-8 h-8 rounded-full bg-[#F4F5F7] flex items-center justify-center">
+            <svg className="w-4 h-4 text-[#8B95A1]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <circle cx="12" cy="8" r="3.5" />
+              <path strokeLinecap="round" d="M6.5 20c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5" />
+            </svg>
+          </button>
         )}
+      </header>
 
-        {/* bottom border */}
-        <div className="h-px bg-[#F2F3F5]" />
+      {/* ━━━ Search ━━━ */}
+      <div className="px-5 pt-1 pb-3">
+        <SearchBar autoFocus size={searched ? "sm" : "lg"} onSearch={handleSearch} />
       </div>
 
-      {/* ── Search Results ── */}
+      {/* ━━━ Search Results Mode ━━━ */}
       {searched && (
-        <div ref={resultsRef} className="px-5 pt-4 pb-8">
-          <InlineResults
-            results={results}
-            loading={loading}
-            query={searchQuery}
-            onAIClick={handleAIClick}
-          />
-
+        <div ref={resultsRef} className="bg-[#F4F5F7] min-h-[60vh] px-5 pt-4 pb-8">
+          <InlineResults results={results} loading={loading} query={searchQuery} onAIClick={handleAIClick} />
           {(showAI || (!loading && results.length > 0)) && (
-            <div className="mt-4 bg-white rounded-[20px] shadow-toss p-5 animate-slide-up">
+            <div className="mt-4 bg-white rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.06)] p-5 animate-slide-up">
               <div className="flex items-center gap-2.5 mb-3">
                 <div className="w-7 h-7 bg-gradient-to-br from-[#00E59B] to-[#3182F6] rounded-lg flex items-center justify-center">
                   <span className="text-white text-[9px] font-extrabold">Q</span>
@@ -309,87 +285,137 @@ export default function Home() {
         </div>
       )}
 
-      {/* ── Main Content (before search) ── */}
+      {/* ━━━ Home Content ━━━ */}
       {!searched && (
-        <div className="pt-3 pb-28">
+        <>
           {/* Quick chips */}
-          <div className="flex gap-2 px-5 mb-4 overflow-x-auto scrollbar-hide">
-            {QUICK_ACTIONS.map((item) => (
+          <div className="flex gap-2 px-5 pb-5 overflow-x-auto scrollbar-hide">
+            {QUICK.map((item) => (
               <button
-                key={item.query}
-                onClick={() => handleSearch(item.query)}
-                className="flex-shrink-0 px-3.5 py-2 bg-white rounded-full text-[13px] font-medium text-[#4E5968] tracking-[-0.3px] shadow-[0_1px_3px_rgba(0,0,0,0.06)] hover:shadow-[0_1px_6px_rgba(0,0,0,0.1)] hover:text-[#191F28] transition-all duration-200"
+                key={item.q}
+                onClick={() => handleSearch(item.q)}
+                className="flex-shrink-0 px-3.5 py-[7px] rounded-full text-[13px] font-medium text-[#4E5968] bg-[#F4F5F7] hover:bg-[#EAEBEE] transition-colors press"
               >
-                {item.label}
+                {item.l}
               </button>
             ))}
           </div>
 
-          {/* AI Banner */}
-          <div className="px-4 mb-4">
+          {/* ── 자주 찾는 고객센터 ── */}
+          <section className="px-5 pb-5">
+            <h2 className="text-[17px] font-bold text-[#191F28] tracking-[-0.4px] mb-4">자주 찾는 고객센터</h2>
+            <div className="grid grid-cols-4 gap-y-2 stagger-children">
+              {POPULAR.map((c) => (
+                <button
+                  key={c.id}
+                  onClick={() => router.push(`/center/${c.id}`)}
+                  className="flex flex-col items-center gap-2 py-2 rounded-xl hover:bg-[#F8F9FA] transition-colors press"
+                >
+                  <CompanyLogo centerId={c.id} size="lg" />
+                  <span className="text-[12px] font-medium text-[#4E5968] tracking-[-0.2px]">{c.name}</span>
+                </button>
+              ))}
+            </div>
+          </section>
+
+          {/* ── AI 배너 ── */}
+          <section className="px-5 pb-2">
             <button
-              onClick={() => { handleSearch("AI 상담 도움"); }}
-              className="w-full relative bg-[#191F28] rounded-2xl p-4 overflow-hidden flex items-center gap-3.5 card-press"
+              onClick={() => handleSearch("AI 상담")}
+              className="w-full bg-[#191F28] rounded-2xl p-5 flex items-center gap-4 press relative overflow-hidden"
             >
-              <div className="absolute -top-8 -right-8 w-28 h-28 bg-[#00E59B] opacity-[0.15] rounded-full blur-3xl" />
-              <div className="absolute -bottom-6 -left-4 w-20 h-20 bg-[#3182F6] opacity-[0.1] rounded-full blur-3xl" />
-              <div className="relative z-10 w-9 h-9 bg-gradient-to-br from-[#00E59B] to-[#3182F6] rounded-xl flex items-center justify-center shrink-0">
-                <span className="text-white text-[10px] font-extrabold">Q</span>
+              <div className="absolute -top-10 -right-10 w-36 h-36 bg-[#00E59B] opacity-[0.12] rounded-full blur-[40px]" />
+              <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[#3182F6] opacity-[0.08] rounded-full blur-[40px]" />
+              <div className="relative z-10 w-11 h-11 bg-gradient-to-br from-[#00E59B] to-[#3182F6] rounded-[14px] flex items-center justify-center shrink-0">
+                <span className="text-white text-[12px] font-extrabold">Q</span>
               </div>
-              <div className="relative z-10 flex-1 text-left min-w-0">
-                <p className="text-[10px] font-semibold text-[#00E59B] tracking-[0.5px] mb-0.5">AI POWERED</p>
-                <p className="text-[14px] font-bold text-white tracking-[-0.3px] leading-tight">Q헬퍼에게 무엇이든 물어보세요</p>
+              <div className="relative z-10 flex-1 text-left">
+                <p className="text-[11px] font-bold text-[#00E59B] tracking-[0.3px] mb-1">AI HELPER</p>
+                <p className="text-[15px] font-bold text-white tracking-[-0.3px] leading-snug">고객센터 문제,<br/>Q헬퍼가 해결해드려요</p>
               </div>
-              <svg className="w-4 h-4 text-white/30 shrink-0 relative z-10" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-white/20 shrink-0 relative z-10" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </button>
-          </div>
+          </section>
 
-          {/* ── Category Card Sections ── */}
-          <div className="px-4 flex flex-col gap-3">
-            {filteredSections.map((section) => (
-              <div
-                key={section.title}
-                className="bg-white rounded-2xl px-4 pt-4 pb-2 shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
-              >
-                {/* Section title */}
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-[15px] font-bold text-[#191F28] tracking-[-0.4px]">{section.title}</h3>
-                  <span className="text-[12px] text-[#B0B8C1] font-medium">{section.items.length}개</span>
+          {/* ── 구분선 ── */}
+          <div className="section-divider mt-5" />
+
+          {/* ── 전체 고객센터 ── */}
+          <section className="pt-5 pb-2">
+            <div className="px-5 mb-4 flex items-center justify-between">
+              <h2 className="text-[17px] font-bold text-[#191F28] tracking-[-0.4px]">전체 고객센터</h2>
+              <span className="text-[13px] text-[#8B95A1]">
+                {SECTIONS.reduce((a, s) => a + s.items.length, 0)}개
+              </span>
+            </div>
+
+            {/* Category tabs */}
+            <div className="flex gap-[6px] px-5 mb-5 overflow-x-auto scrollbar-hide">
+              {TABS.map((t) => (
+                <button
+                  key={t}
+                  onClick={() => setTab(t)}
+                  className={`flex-shrink-0 px-4 py-[7px] rounded-full text-[13px] font-semibold tracking-[-0.3px] transition-all duration-200 press ${
+                    tab === t
+                      ? "bg-[#191F28] text-white"
+                      : "bg-[#F4F5F7] text-[#8B95A1] hover:text-[#4E5968] hover:bg-[#EAEBEE]"
+                  }`}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+
+            {/* Section list */}
+            <div>
+              {visibleSections.map((section, i) => (
+                <div key={section.title}>
+                  {/* Thin divider between sections */}
+                  {i > 0 && <div className="h-px bg-[#F2F3F5] mx-5" />}
+
+                  <div className="px-5 py-4">
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="text-[15px] font-bold text-[#191F28] tracking-[-0.3px]">{section.title}</h3>
+                      <span className="text-[12px] text-[#B0B8C1]">{section.items.length}개</span>
+                    </div>
+
+                    <div className="grid grid-cols-4 gap-y-1">
+                      {section.items.map((c) => (
+                        <button
+                          key={c.id}
+                          onClick={() => router.push(`/center/${c.id}`)}
+                          className="flex flex-col items-center gap-[6px] py-2.5 rounded-xl hover:bg-[#F8F9FA] transition-colors press"
+                        >
+                          <CompanyLogo centerId={c.id} size="md" />
+                          <span className="text-[11px] font-medium text-[#6B7684] tracking-[-0.2px] text-center leading-tight">{c.name}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
+              ))}
+            </div>
+          </section>
 
-                {/* 4-column grid */}
-                <div className="grid grid-cols-4 gap-y-1">
-                  {section.items.map((c) => (
-                    <button
-                      key={c.id}
-                      onClick={() => router.push(`/center/${c.id}`)}
-                      className="flex flex-col items-center gap-1.5 py-2.5 rounded-xl hover:bg-[#F8F9FA] transition-colors duration-150 card-press"
-                    >
-                      <CompanyLogo centerId={c.id} size="md" />
-                      <span className="text-[11px] font-medium text-[#6B7684] tracking-[-0.2px] text-center leading-tight">{c.name}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+          {/* ── 구분선 ── */}
+          <div className="section-divider" />
 
-          {/* ── Trending ── */}
-          <div className="px-4 mt-3">
-            <div className="bg-white rounded-2xl px-4 pt-4 pb-2 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-              <h3 className="text-[15px] font-bold text-[#191F28] tracking-[-0.4px] mb-2">지금 많이 찾는</h3>
+          {/* ── 지금 많이 찾는 ── */}
+          <section className="px-5 pt-5 pb-4">
+            <h2 className="text-[17px] font-bold text-[#191F28] tracking-[-0.4px] mb-1">지금 많이 찾는</h2>
+            <div>
               {TRENDING.map((item, i) => (
                 <button
-                  key={item.query}
-                  onClick={() => handleSearch(item.query)}
-                  className="flex items-center gap-3 py-3 w-full text-left border-t border-[#F4F5F7] first:border-t-0 hover:bg-[#F8F9FA] -mx-4 px-4 transition-colors duration-150"
+                  key={item.q}
+                  onClick={() => handleSearch(item.q)}
+                  className="flex items-center gap-4 py-[14px] w-full text-left border-b border-[#F4F5F7] last:border-b-0 press"
                 >
-                  <span className="text-[14px] font-extrabold text-[#3182F6] w-5 text-center shrink-0">{i + 1}</span>
+                  <span className="text-[16px] font-extrabold text-[#3182F6] w-5 text-center tabular-nums">{i + 1}</span>
                   <div className="flex-1 min-w-0">
-                    <p className="text-[14px] font-semibold text-[#191F28] tracking-[-0.3px]">{item.label}</p>
-                    <p className="text-[12px] text-[#8B95A1] mt-0.5 tracking-[-0.2px]">{item.desc}</p>
+                    <p className="text-[15px] font-semibold text-[#191F28] tracking-[-0.3px]">{item.l}</p>
+                    <p className="text-[13px] text-[#8B95A1] mt-[2px] tracking-[-0.2px]">{item.d}</p>
                   </div>
                   <svg className="w-4 h-4 text-[#D1D6DB] shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -397,8 +423,8 @@ export default function Home() {
                 </button>
               ))}
             </div>
-          </div>
-        </div>
+          </section>
+        </>
       )}
     </div>
   );
