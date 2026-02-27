@@ -44,153 +44,82 @@ interface SearchResultItem {
   confidence: number;
 }
 
-/* ── Data ── */
-const POPULAR = [
-  { id: "skt", name: "SKT" },
-  { id: "kbbank", name: "국민은행" },
-  { id: "samsungcard", name: "삼성카드" },
-  { id: "coupang", name: "쿠팡" },
-  { id: "nhis", name: "건강보험" },
-  { id: "kakao", name: "카카오" },
-  { id: "naver", name: "네이버" },
-  { id: "kt", name: "KT" },
+/* ── Data: Problem-centric (NOT company-centric) ── */
+const QUICK_PROBLEMS = [
+  { q: "요금제 변경", l: "요금제 변경" },
+  { q: "해지 방법", l: "해지 방법" },
+  { q: "카드 한도", l: "카드 한도" },
+  { q: "환불 반품", l: "환불/반품" },
+  { q: "비밀번호 변경", l: "비밀번호" },
+  { q: "배송 조회", l: "배송 조회" },
 ];
 
-const QUICK = [
-  { q: "SKT 해지", l: "SKT 해지" },
-  { q: "쿠팡 반품", l: "쿠팡 반품" },
-  { q: "카드 한도 조회", l: "카드 한도" },
-  { q: "요금제 변경", l: "요금 변경" },
-  { q: "대출 상담", l: "대출 상담" },
-  { q: "넷플릭스 해지", l: "넷플릭스 해지" },
+const AI_ACTIONS = [
+  {
+    label: "전화 없이 해결",
+    desc: "앱/웹으로 바로 해결 가능한 방법 찾기",
+    q: "전화 없이 해결하는 방법",
+    color: "bg-[#E8FAF0]",
+    icon: (
+      <svg width="18" height="18" fill="none" stroke="#00C785" strokeWidth={2} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    ),
+  },
+  {
+    label: "상담 멘트 생성",
+    desc: "상담원에게 할 말을 만들어줘요",
+    q: "상담 멘트 만들어줘",
+    color: "bg-[#E8F3FF]",
+    icon: (
+      <svg width="18" height="18" fill="none" stroke="#3182F6" strokeWidth={2} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+      </svg>
+    ),
+  },
+  {
+    label: "해지 방어 코칭",
+    desc: "유지팀 대응법, 할인 협상 팁",
+    q: "해지 방어 코칭",
+    color: "bg-[#FFF5E0]",
+    icon: (
+      <svg width="18" height="18" fill="none" stroke="#F59F00" strokeWidth={2} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    ),
+  },
+  {
+    label: "민원 대필",
+    desc: "소비자보호법 근거 자동 작성",
+    q: "민원 대필",
+    color: "bg-[#F3EDFF]",
+    icon: (
+      <svg width="18" height="18" fill="none" stroke="#7C3AED" strokeWidth={2} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+    ),
+  },
 ];
 
 const TRENDING = [
-  { q: "SKT 요금제 변경", l: "SKT 요금제 변경", d: "T월드 앱에서 바로 가능" },
-  { q: "삼성카드 한도", l: "삼성카드 한도 상향", d: "ARS 1번 → 3번 빠른 연결" },
-  { q: "쿠팡 환불", l: "쿠팡 환불/반품", d: "앱에서 3분 완료" },
+  { q: "SKT 요금제 변경", l: "SKT 요금제 변경", d: "T월드 앱에서 3분 해결", badge: "전화 불필요", badgeType: "green" as const },
+  { q: "삼성카드 한도 상향", l: "삼성카드 한도 상향", d: "ARS 1→3번 빠른 연결", badge: "대기 2분", badgeType: "blue" as const },
+  { q: "쿠팡 환불", l: "쿠팡 환불 방법", d: "앱에서 바로 처리 가능", badge: "전화 불필요", badgeType: "green" as const },
 ];
 
-/* ── 카테고리 탭 ── */
-const TABS = ["전체", "통신", "금융", "공공", "쇼핑", "생활"] as const;
-type Tab = (typeof TABS)[number];
-
-const TAB_MAP: Record<Exclude<Tab, "전체">, string[]> = {
-  통신: ["통신사"],
-  금융: ["은행", "카드", "보험"],
-  공공: ["공공기관"],
-  쇼핑: ["쇼핑", "배달"],
-  생활: ["IT · 플랫폼", "항공 · 여행", "택배 · 물류", "전자 · 자동차"],
-};
-
-const SECTIONS = [
-  {
-    title: "통신사",
-    items: [
-      { id: "skt", name: "SKT" },
-      { id: "kt", name: "KT" },
-      { id: "lguplus", name: "LG U+" },
-    ],
-  },
-  {
-    title: "은행",
-    items: [
-      { id: "kbbank", name: "국민은행" },
-      { id: "shinhanbank", name: "신한은행" },
-      { id: "hanabank", name: "하나은행" },
-      { id: "wooribank", name: "우리은행" },
-      { id: "nonghyup", name: "농협" },
-      { id: "kakaobank", name: "카카오뱅크" },
-      { id: "kbank", name: "케이뱅크" },
-      { id: "toss", name: "토스" },
-    ],
-  },
-  {
-    title: "카드",
-    items: [
-      { id: "samsungcard", name: "삼성카드" },
-      { id: "hyundaicard", name: "현대카드" },
-      { id: "kbcard", name: "KB카드" },
-      { id: "shinhancard", name: "신한카드" },
-      { id: "lottecard", name: "롯데카드" },
-    ],
-  },
-  {
-    title: "보험",
-    items: [
-      { id: "samsunglife", name: "삼성생명" },
-      { id: "hyundaiins", name: "현대해상" },
-      { id: "dbins", name: "DB손보" },
-    ],
-  },
-  {
-    title: "공공기관",
-    items: [
-      { id: "nhis", name: "건강보험" },
-      { id: "nps", name: "국민연금" },
-      { id: "gov24", name: "정부24" },
-      { id: "nts", name: "국세청" },
-      { id: "ei", name: "고용센터" },
-    ],
-  },
-  {
-    title: "쇼핑",
-    items: [
-      { id: "coupang", name: "쿠팡" },
-      { id: "11st", name: "11번가" },
-      { id: "musinsa", name: "무신사" },
-      { id: "gmarket", name: "G마켓" },
-      { id: "ssg", name: "SSG" },
-      { id: "daangn", name: "당근" },
-      { id: "oliveyoung", name: "올리브영" },
-      { id: "ohouse", name: "오늘의집" },
-    ],
-  },
-  {
-    title: "배달",
-    items: [
-      { id: "baemin", name: "배민" },
-      { id: "yogiyo", name: "요기요" },
-    ],
-  },
-  {
-    title: "IT · 플랫폼",
-    items: [
-      { id: "naver", name: "네이버" },
-      { id: "kakao", name: "카카오" },
-      { id: "netflix", name: "넷플릭스" },
-      { id: "disneyplus", name: "디즈니+" },
-    ],
-  },
-  {
-    title: "항공 · 여행",
-    items: [
-      { id: "koreanair", name: "대한항공" },
-      { id: "asiana", name: "아시아나" },
-      { id: "yanolja", name: "야놀자" },
-    ],
-  },
-  {
-    title: "택배 · 물류",
-    items: [
-      { id: "cjlogistics", name: "CJ대한통운" },
-      { id: "hanjin", name: "한진택배" },
-    ],
-  },
-  {
-    title: "전자 · 자동차",
-    items: [
-      { id: "samsung", name: "삼성전자" },
-      { id: "lg", name: "LG전자" },
-      { id: "apple", name: "Apple" },
-      { id: "hyundaicar", name: "현대자동차" },
-      { id: "kia", name: "기아" },
-    ],
-  },
+const POPULAR = [
+  { id: "skt", name: "SKT" },
+  { id: "kt", name: "KT" },
+  { id: "lguplus", name: "LG U+" },
+  { id: "kbbank", name: "국민은행" },
+  { id: "shinhanbank", name: "신한은행" },
+  { id: "samsungcard", name: "삼성카드" },
+  { id: "coupang", name: "쿠팡" },
+  { id: "nhis", name: "건강보험" },
 ];
 
 /* ══════════════════════════════════════
-   Home Component
+   Home Component — AI-First Design
    ══════════════════════════════════════ */
 export default function Home() {
   const router = useRouter();
@@ -199,7 +128,6 @@ export default function Home() {
   const [searched, setSearched] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [showAI, setShowAI] = useState(false);
-  const [tab, setTab] = useState<Tab>("전체");
   const resultsRef = useRef<HTMLDivElement>(null);
 
   const handleSearch = async (query: string) => {
@@ -228,12 +156,6 @@ export default function Home() {
     }, 100);
   };
 
-  const visibleSections =
-    tab === "전체"
-      ? SECTIONS
-      : SECTIONS.filter((s) => TAB_MAP[tab]?.includes(s.title));
-
-  /* ── Render ── */
   return (
     <div className="min-h-screen bg-white">
 
@@ -262,12 +184,31 @@ export default function Home() {
         )}
       </header>
 
+      {/* ━━━ Hero — AI First greeting ━━━ */}
+      {!searched && (
+        <div className="px-5 pt-2 pb-1 relative overflow-hidden">
+          <div className="absolute -top-[60px] -right-[40px] w-[200px] h-[200px] bg-[radial-gradient(circle,rgba(0,229,155,0.08)_0%,transparent_70%)] pointer-events-none" />
+          <div className="absolute -bottom-[40px] -left-[40px] w-[160px] h-[160px] bg-[radial-gradient(circle,rgba(49,130,246,0.06)_0%,transparent_70%)] pointer-events-none" />
+          <div className="mb-6 relative z-[1]">
+            <p className="text-[14px] text-[#8B95A1] font-medium mb-[6px]">고객센터 때문에 스트레스 받지 마세요</p>
+            <p className="text-[24px] font-extrabold text-[#191F28] tracking-[-0.8px] leading-[1.35]">
+              어떤 <span className="text-brand-gradient">문제</span>를<br />해결해드릴까요?
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* ━━━ Search ━━━ */}
       <div className="px-5 pt-1 pb-3">
-        <SearchBar autoFocus size={searched ? "sm" : "lg"} onSearch={handleSearch} />
+        <SearchBar
+          autoFocus
+          size={searched ? "sm" : "lg"}
+          onSearch={handleSearch}
+          placeholder="요금 비싸서 해지하고 싶어요"
+        />
       </div>
 
-      {/* ━━━ Search Results Mode ━━━ */}
+      {/* ━━━ Search Results ━━━ */}
       {searched && (
         <div ref={resultsRef} className="bg-[#F4F5F7] min-h-[60vh] px-5 pt-4 pb-8">
           <InlineResults results={results} loading={loading} query={searchQuery} onAIClick={handleAIClick} />
@@ -285,12 +226,12 @@ export default function Home() {
         </div>
       )}
 
-      {/* ━━━ Home Content ━━━ */}
+      {/* ━━━ Home Content — AI First ━━━ */}
       {!searched && (
         <>
-          {/* Quick chips */}
+          {/* Problem-centric quick chips */}
           <div className="flex gap-2 px-5 pb-5 overflow-x-auto scrollbar-hide">
-            {QUICK.map((item) => (
+            {QUICK_PROBLEMS.map((item) => (
               <button
                 key={item.q}
                 onClick={() => handleSearch(item.q)}
@@ -301,125 +242,81 @@ export default function Home() {
             ))}
           </div>
 
-          {/* ── 자주 찾는 고객센터 ── */}
+          {/* AI Quick Actions — 2x2 grid */}
           <section className="px-5 pb-5">
-            <h2 className="text-[17px] font-bold text-[#191F28] tracking-[-0.4px] mb-4">자주 찾는 고객센터</h2>
-            <div className="grid grid-cols-4 gap-y-2 stagger-children">
-              {POPULAR.map((c) => (
+            <div className="grid grid-cols-2 gap-[10px]">
+              {AI_ACTIONS.map((action) => (
                 <button
-                  key={c.id}
-                  onClick={() => router.push(`/center/${c.id}`)}
-                  className="flex flex-col items-center gap-2 py-2 rounded-xl hover:bg-[#F8F9FA] transition-colors press"
+                  key={action.label}
+                  onClick={() => handleSearch(action.q)}
+                  className="bg-white border border-[#F0F1F3] rounded-2xl p-4 text-left hover:border-[#3182F6] hover:shadow-[0_2px_12px_rgba(49,130,246,0.08)] transition-all press"
                 >
-                  <CompanyLogo centerId={c.id} size="lg" />
-                  <span className="text-[12px] font-medium text-[#4E5968] tracking-[-0.2px]">{c.name}</span>
-                </button>
-              ))}
-            </div>
-          </section>
-
-          {/* ── AI 배너 ── */}
-          <section className="px-5 pb-2">
-            <button
-              onClick={() => handleSearch("AI 상담")}
-              className="w-full bg-[#191F28] rounded-2xl p-5 flex items-center gap-4 press relative overflow-hidden"
-            >
-              <div className="absolute -top-10 -right-10 w-36 h-36 bg-[#00E59B] opacity-[0.12] rounded-full blur-[40px]" />
-              <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[#3182F6] opacity-[0.08] rounded-full blur-[40px]" />
-              <div className="relative z-10 w-11 h-11 bg-gradient-to-br from-[#00E59B] to-[#3182F6] rounded-[14px] flex items-center justify-center shrink-0">
-                <span className="text-white text-[12px] font-extrabold">Q</span>
-              </div>
-              <div className="relative z-10 flex-1 text-left">
-                <p className="text-[11px] font-bold text-[#00E59B] tracking-[0.3px] mb-1">AI HELPER</p>
-                <p className="text-[15px] font-bold text-white tracking-[-0.3px] leading-snug">고객센터 문제,<br/>Q헬퍼가 해결해드려요</p>
-              </div>
-              <svg className="w-5 h-5 text-white/20 shrink-0 relative z-10" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </section>
-
-          {/* ── 구분선 ── */}
-          <div className="section-divider mt-5" />
-
-          {/* ── 전체 고객센터 ── */}
-          <section className="pt-5 pb-2">
-            <div className="px-5 mb-4 flex items-center justify-between">
-              <h2 className="text-[17px] font-bold text-[#191F28] tracking-[-0.4px]">전체 고객센터</h2>
-              <span className="text-[13px] text-[#8B95A1]">
-                {SECTIONS.reduce((a, s) => a + s.items.length, 0)}개
-              </span>
-            </div>
-
-            {/* Category tabs */}
-            <div className="flex gap-[6px] px-5 mb-5 overflow-x-auto scrollbar-hide">
-              {TABS.map((t) => (
-                <button
-                  key={t}
-                  onClick={() => setTab(t)}
-                  className={`flex-shrink-0 px-4 py-[7px] rounded-full text-[13px] font-semibold tracking-[-0.3px] transition-all duration-200 press ${
-                    tab === t
-                      ? "bg-[#191F28] text-white"
-                      : "bg-[#F4F5F7] text-[#8B95A1] hover:text-[#4E5968] hover:bg-[#EAEBEE]"
-                  }`}
-                >
-                  {t}
-                </button>
-              ))}
-            </div>
-
-            {/* Section list */}
-            <div>
-              {visibleSections.map((section, i) => (
-                <div key={section.title}>
-                  {/* Thin divider between sections */}
-                  {i > 0 && <div className="h-px bg-[#F2F3F5] mx-5" />}
-
-                  <div className="px-5 py-4">
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-[15px] font-bold text-[#191F28] tracking-[-0.3px]">{section.title}</h3>
-                      <span className="text-[12px] text-[#B0B8C1]">{section.items.length}개</span>
-                    </div>
-
-                    <div className="grid grid-cols-4 gap-y-1">
-                      {section.items.map((c) => (
-                        <button
-                          key={c.id}
-                          onClick={() => router.push(`/center/${c.id}`)}
-                          className="flex flex-col items-center gap-[6px] py-2.5 rounded-xl hover:bg-[#F8F9FA] transition-colors press"
-                        >
-                          <CompanyLogo centerId={c.id} size="md" />
-                          <span className="text-[11px] font-medium text-[#6B7684] tracking-[-0.2px] text-center leading-tight">{c.name}</span>
-                        </button>
-                      ))}
-                    </div>
+                  <div className={`w-9 h-9 rounded-xl ${action.color} flex items-center justify-center mb-[10px]`}>
+                    {action.icon}
                   </div>
-                </div>
+                  <p className="text-[14px] font-bold text-[#191F28] tracking-[-0.3px] mb-[3px]">{action.label}</p>
+                  <p className="text-[12px] text-[#8B95A1] leading-[1.4]">{action.desc}</p>
+                </button>
               ))}
             </div>
           </section>
 
-          {/* ── 구분선 ── */}
           <div className="section-divider" />
 
-          {/* ── 지금 많이 찾는 ── */}
-          <section className="px-5 pt-5 pb-4">
-            <h2 className="text-[17px] font-bold text-[#191F28] tracking-[-0.4px] mb-1">지금 많이 찾는</h2>
-            <div>
+          {/* Trending */}
+          <section className="pt-5 pb-2">
+            <div className="px-5 mb-[14px] flex items-center justify-between">
+              <h2 className="text-[17px] font-extrabold text-[#191F28] tracking-[-0.4px]">지금 많이 해결하는</h2>
+              <span className="text-[13px] text-[#8B95A1]">더보기</span>
+            </div>
+            <div className="px-5">
               {TRENDING.map((item, i) => (
                 <button
                   key={item.q}
                   onClick={() => handleSearch(item.q)}
-                  className="flex items-center gap-4 py-[14px] w-full text-left border-b border-[#F4F5F7] last:border-b-0 press"
+                  className="flex items-center gap-[14px] py-[14px] w-full text-left border-b border-[#F4F5F7] last:border-b-0 press"
                 >
-                  <span className="text-[16px] font-extrabold text-[#3182F6] w-5 text-center tabular-nums">{i + 1}</span>
+                  <span className={`text-[16px] font-extrabold w-5 text-center tabular-nums ${i < 3 ? "text-[#3182F6]" : "text-[#B0B8C1]"}`}>
+                    {i + 1}
+                  </span>
                   <div className="flex-1 min-w-0">
                     <p className="text-[15px] font-semibold text-[#191F28] tracking-[-0.3px]">{item.l}</p>
                     <p className="text-[13px] text-[#8B95A1] mt-[2px] tracking-[-0.2px]">{item.d}</p>
                   </div>
-                  <svg className="w-4 h-4 text-[#D1D6DB] shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
+                  <span className={`flex-shrink-0 px-2 py-1 rounded-md text-[11px] font-semibold ${
+                    item.badgeType === "green"
+                      ? "bg-[#E8FAF0] text-[#065F46]"
+                      : "bg-[#E8F3FF] text-[#1E40AF]"
+                  }`}>
+                    {item.badge}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </section>
+
+          <div className="section-divider mt-2" />
+
+          {/* Popular centers — compact, secondary */}
+          <section className="pt-5 pb-4">
+            <div className="px-5 mb-[14px] flex items-center justify-between">
+              <h2 className="text-[17px] font-extrabold text-[#191F28] tracking-[-0.4px]">고객센터 탐색</h2>
+              <span className="text-[13px] text-[#8B95A1] flex items-center gap-1">
+                전체보기
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+            <div className="flex gap-[10px] px-5 overflow-x-auto scrollbar-hide pb-2">
+              {POPULAR.map((c) => (
+                <button
+                  key={c.id}
+                  onClick={() => router.push(`/center/${c.id}`)}
+                  className="flex-shrink-0 flex flex-col items-center gap-[6px] w-16 press"
+                >
+                  <CompanyLogo centerId={c.id} size="md" />
+                  <span className="text-[11px] font-medium text-[#8B95A1] text-center whitespace-nowrap">{c.name}</span>
                 </button>
               ))}
             </div>
